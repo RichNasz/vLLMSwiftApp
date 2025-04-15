@@ -1,0 +1,653 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		421FFD212DB13C5700F3C10A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 421FFD202DB13C4C00F3C10A /* README.md */; };
+		421FFD242DB1A1DC00F3C10A /* LlamaStackClient in Frameworks */ = {isa = PBXBuildFile; productRef = 421FFD232DB1A1DC00F3C10A /* LlamaStackClient */; };
+		42D1A70A2DBA97E00016403C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 42D1A7092DBA97E00016403C /* LICENSE */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		421FFCB42DAEB65D00F3C10A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 421FFC9B2DAEB65A00F3C10A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 421FFCA22DAEB65A00F3C10A;
+			remoteInfo = vLLMSwiftApp;
+		};
+		421FFCBE2DAEB65D00F3C10A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 421FFC9B2DAEB65A00F3C10A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 421FFCA22DAEB65A00F3C10A;
+			remoteInfo = vLLMSwiftApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		421FFCA32DAEB65A00F3C10A /* vLLMSwiftApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vLLMSwiftApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		421FFCB32DAEB65D00F3C10A /* vLLMSwiftAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vLLMSwiftAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		421FFCBD2DAEB65D00F3C10A /* vLLMSwiftAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vLLMSwiftAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		421FFD202DB13C4C00F3C10A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		42D1A7092DBA97E00016403C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		42D1A7062DB6C0F80016403C /* Exceptions for "vLLMSwiftApp" folder in "vLLMSwiftApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 421FFCA22DAEB65A00F3C10A /* vLLMSwiftApp */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		421FFCA52DAEB65A00F3C10A /* vLLMSwiftApp */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				42D1A7062DB6C0F80016403C /* Exceptions for "vLLMSwiftApp" folder in "vLLMSwiftApp" target */,
+			);
+			path = vLLMSwiftApp;
+			sourceTree = "<group>";
+		};
+		421FFCB62DAEB65D00F3C10A /* vLLMSwiftAppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = vLLMSwiftAppTests;
+			sourceTree = "<group>";
+		};
+		421FFCC02DAEB65D00F3C10A /* vLLMSwiftAppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = vLLMSwiftAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		421FFCA02DAEB65A00F3C10A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				421FFD242DB1A1DC00F3C10A /* LlamaStackClient in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		421FFCB02DAEB65D00F3C10A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		421FFCBA2DAEB65D00F3C10A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		421FFC9A2DAEB65A00F3C10A = {
+			isa = PBXGroup;
+			children = (
+				42D1A7092DBA97E00016403C /* LICENSE */,
+				421FFD202DB13C4C00F3C10A /* README.md */,
+				421FFCA52DAEB65A00F3C10A /* vLLMSwiftApp */,
+				421FFCB62DAEB65D00F3C10A /* vLLMSwiftAppTests */,
+				421FFCC02DAEB65D00F3C10A /* vLLMSwiftAppUITests */,
+				421FFCA42DAEB65A00F3C10A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		421FFCA42DAEB65A00F3C10A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				421FFCA32DAEB65A00F3C10A /* vLLMSwiftApp.app */,
+				421FFCB32DAEB65D00F3C10A /* vLLMSwiftAppTests.xctest */,
+				421FFCBD2DAEB65D00F3C10A /* vLLMSwiftAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		421FFCA22DAEB65A00F3C10A /* vLLMSwiftApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 421FFCC72DAEB65D00F3C10A /* Build configuration list for PBXNativeTarget "vLLMSwiftApp" */;
+			buildPhases = (
+				421FFC9F2DAEB65A00F3C10A /* Sources */,
+				421FFCA02DAEB65A00F3C10A /* Frameworks */,
+				421FFCA12DAEB65A00F3C10A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				421FFCA52DAEB65A00F3C10A /* vLLMSwiftApp */,
+			);
+			name = vLLMSwiftApp;
+			packageProductDependencies = (
+				421FFD232DB1A1DC00F3C10A /* LlamaStackClient */,
+			);
+			productName = vLLMSwiftApp;
+			productReference = 421FFCA32DAEB65A00F3C10A /* vLLMSwiftApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		421FFCB22DAEB65D00F3C10A /* vLLMSwiftAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 421FFCCA2DAEB65D00F3C10A /* Build configuration list for PBXNativeTarget "vLLMSwiftAppTests" */;
+			buildPhases = (
+				421FFCAF2DAEB65D00F3C10A /* Sources */,
+				421FFCB02DAEB65D00F3C10A /* Frameworks */,
+				421FFCB12DAEB65D00F3C10A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				421FFCB52DAEB65D00F3C10A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				421FFCB62DAEB65D00F3C10A /* vLLMSwiftAppTests */,
+			);
+			name = vLLMSwiftAppTests;
+			packageProductDependencies = (
+			);
+			productName = vLLMSwiftAppTests;
+			productReference = 421FFCB32DAEB65D00F3C10A /* vLLMSwiftAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		421FFCBC2DAEB65D00F3C10A /* vLLMSwiftAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 421FFCCD2DAEB65D00F3C10A /* Build configuration list for PBXNativeTarget "vLLMSwiftAppUITests" */;
+			buildPhases = (
+				421FFCB92DAEB65D00F3C10A /* Sources */,
+				421FFCBA2DAEB65D00F3C10A /* Frameworks */,
+				421FFCBB2DAEB65D00F3C10A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				421FFCBF2DAEB65D00F3C10A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				421FFCC02DAEB65D00F3C10A /* vLLMSwiftAppUITests */,
+			);
+			name = vLLMSwiftAppUITests;
+			packageProductDependencies = (
+			);
+			productName = vLLMSwiftAppUITests;
+			productReference = 421FFCBD2DAEB65D00F3C10A /* vLLMSwiftAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		421FFC9B2DAEB65A00F3C10A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1630;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					421FFCA22DAEB65A00F3C10A = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					421FFCB22DAEB65D00F3C10A = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 421FFCA22DAEB65A00F3C10A;
+					};
+					421FFCBC2DAEB65D00F3C10A = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 421FFCA22DAEB65A00F3C10A;
+					};
+				};
+			};
+			buildConfigurationList = 421FFC9E2DAEB65A00F3C10A /* Build configuration list for PBXProject "vLLMSwiftApp" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 421FFC9A2DAEB65A00F3C10A;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				421FFD222DB1A1DC00F3C10A /* XCRemoteSwiftPackageReference "llama-stack-client-swift" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 421FFCA42DAEB65A00F3C10A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				421FFCA22DAEB65A00F3C10A /* vLLMSwiftApp */,
+				421FFCB22DAEB65D00F3C10A /* vLLMSwiftAppTests */,
+				421FFCBC2DAEB65D00F3C10A /* vLLMSwiftAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		421FFCA12DAEB65A00F3C10A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D1A70A2DBA97E00016403C /* LICENSE in Resources */,
+				421FFD212DB13C5700F3C10A /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		421FFCB12DAEB65D00F3C10A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		421FFCBB2DAEB65D00F3C10A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		421FFC9F2DAEB65A00F3C10A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		421FFCAF2DAEB65D00F3C10A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		421FFCB92DAEB65D00F3C10A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		421FFCB52DAEB65D00F3C10A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 421FFCA22DAEB65A00F3C10A /* vLLMSwiftApp */;
+			targetProxy = 421FFCB42DAEB65D00F3C10A /* PBXContainerItemProxy */;
+		};
+		421FFCBF2DAEB65D00F3C10A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 421FFCA22DAEB65A00F3C10A /* vLLMSwiftApp */;
+			targetProxy = 421FFCBE2DAEB65D00F3C10A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		421FFCC52DAEB65D00F3C10A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YWJU9P6KL8;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		421FFCC62DAEB65D00F3C10A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YWJU9P6KL8;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		421FFCC82DAEB65D00F3C10A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = vLLMSwiftApp/vLLMSwiftApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YWJU9P6KL8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = vLLMSwiftApp/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Allow application to make network calls to an inference server";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.naszcyniec.vLLMSwiftApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Debug;
+		};
+		421FFCC92DAEB65D00F3C10A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = vLLMSwiftApp/vLLMSwiftApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YWJU9P6KL8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = vLLMSwiftApp/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Allow application to make network calls to an inference server";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.naszcyniec.vLLMSwiftApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Release;
+		};
+		421FFCCB2DAEB65D00F3C10A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YWJU9P6KL8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.naszcyniec.vLLMSwiftAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vLLMSwiftApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/vLLMSwiftApp";
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Debug;
+		};
+		421FFCCC2DAEB65D00F3C10A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YWJU9P6KL8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.naszcyniec.vLLMSwiftAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vLLMSwiftApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/vLLMSwiftApp";
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Release;
+		};
+		421FFCCE2DAEB65D00F3C10A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YWJU9P6KL8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.naszcyniec.vLLMSwiftAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = vLLMSwiftApp;
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Debug;
+		};
+		421FFCCF2DAEB65D00F3C10A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YWJU9P6KL8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.naszcyniec.vLLMSwiftAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = vLLMSwiftApp;
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		421FFC9E2DAEB65A00F3C10A /* Build configuration list for PBXProject "vLLMSwiftApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				421FFCC52DAEB65D00F3C10A /* Debug */,
+				421FFCC62DAEB65D00F3C10A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		421FFCC72DAEB65D00F3C10A /* Build configuration list for PBXNativeTarget "vLLMSwiftApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				421FFCC82DAEB65D00F3C10A /* Debug */,
+				421FFCC92DAEB65D00F3C10A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		421FFCCA2DAEB65D00F3C10A /* Build configuration list for PBXNativeTarget "vLLMSwiftAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				421FFCCB2DAEB65D00F3C10A /* Debug */,
+				421FFCCC2DAEB65D00F3C10A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		421FFCCD2DAEB65D00F3C10A /* Build configuration list for PBXNativeTarget "vLLMSwiftAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				421FFCCE2DAEB65D00F3C10A /* Debug */,
+				421FFCCF2DAEB65D00F3C10A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		421FFD222DB1A1DC00F3C10A /* XCRemoteSwiftPackageReference "llama-stack-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/meta-llama/llama-stack-client-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		421FFD232DB1A1DC00F3C10A /* LlamaStackClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 421FFD222DB1A1DC00F3C10A /* XCRemoteSwiftPackageReference "llama-stack-client-swift" */;
+			productName = LlamaStackClient;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 421FFC9B2DAEB65A00F3C10A /* Project object */;
+}
