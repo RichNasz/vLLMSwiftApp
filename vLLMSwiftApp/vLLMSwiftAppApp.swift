@@ -25,8 +25,7 @@ struct vLLMSwiftAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-			  MainAppView()
+			  MainAppView()	//  one main NavigationStackView for the app
         }
 		  .modelContainer(sharedModelContainer)
     }

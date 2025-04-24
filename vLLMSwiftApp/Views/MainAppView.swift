@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-// valid navigation destinations
+// valid navigation destinations are added as available so the navigation menu can be dynamic
 enum DynamicNavigationDestination: Hashable {
 	case vllmServers
 	case llamaStackChat
@@ -18,7 +18,7 @@ enum DynamicNavigationDestination: Hashable {
 struct NavItem: Identifiable, Hashable {
 	let id = UUID()
 	let title: String	// used for the menu label & used to set the dynamic view destination
-	let icon: String // SF Symbol name
+	let icon: String 	// SF Symbol name
 	
 	// used in code to dynamically set the view to use based on menu item selected
 	var destination: DynamicNavigationDestination? {
@@ -41,12 +41,12 @@ struct MainAppView: View {
 	
 	// get the Swift Data context and get the current sorted data for use in this view
 	@Environment(\.modelContext) private var modelContext
-	// TODO: fix the query to just use llama-stack server definitions
+	// TODO: upgrade query to just use llama-stack server definitions
 	@Query(sort: \Server.name, order: .forward) var serverList: [Server]
 	
 	@State private var columnVisibility = NavigationSplitViewVisibility.automatic
 	@State private var selectedItem: NavItem? // Track selected item
-	@State private var lastValidSelection: NavItem? 	// last valid selection which can be nil
+	@State private var lastValidSelection: NavItem? // must allow for nil to avoid default selection
 	@State private var navPath = NavigationPath()
 	
 	// Define your navigation items array
@@ -66,13 +66,13 @@ struct MainAppView: View {
 		])
 	]
 	
-	var noServersDefined: Bool {
-		serverList.isEmpty
-	}
+
+	@State private var mustCreateSever: Bool = false
+	
 	
     var body: some View {
 		 NavigationSplitView(columnVisibility: $columnVisibility) {
-			 // create the sidebar here
+			 // Build the sidebar dynamically and only enable items that have views implemented
 			 List(selection: $selectedItem) {
 				 ForEach(navSections) { section in
 					 Section(section.title) {
@@ -82,16 +82,17 @@ struct MainAppView: View {
 							 if( item.destination == nil ) {
 								 Label(item.title, systemImage: item.icon)
 									 .padding(.vertical, 4)
-									 .foregroundColor(item.destination != nil ? .primary : .gray)
+//									 .foregroundColor(item.destination != nil ? .primary : .gray)
+									 .foregroundColor(.gray)
 									 .accessibilityLabel("\(item.title) navigation item")
 									 .selectionDisabled(true)
 							 } else {
 								 NavigationLink(value: item) {
 									 Label(item.title, systemImage: item.icon)
 										 .padding(.vertical, 4)
-										 .foregroundColor(item.destination != nil ? .primary : .gray)
+										 .foregroundColor(.primary)
 										 .accessibilityLabel("\(item.title) navigation item")
-										 .selectionDisabled(noServersDefined)
+										 .selectionDisabled(false)
 								 }
 							 }
 						 }
@@ -109,14 +110,30 @@ struct MainAppView: View {
 							 ServerListView()
 						 case .llamaStackChat:
 							 LlamaStackChatView()
-						 default:
-							 Text("View not implemented yet")
-								 .foregroundColor(.orange)
 					 }
 				 } else {
-					 Text("Select a valid item from the sidebar")
+					 Text("Select an menu item from the sidebar")
 						 .foregroundColor(.red)
 				 }
+			 }
+		 }
+		 .onChange(of: selectedItem) {	// check for any conditions why the selected item shouldn't change
+			 if let currentItem = selectedItem {
+				 // code to disable selection of a menu item that depends on a server definition being available isn't working
+				 // forced to use an alternate method which is to detect the condition and throw an alert
+				 // TODO: find a more elegant way to handle this condtion
+				 if currentItem.title != "vLLM Servers" && serverList.isEmpty {
+					 mustCreateSever = true
+				 }
+			 }
+		 }
+		 .alert(
+			Text("You must define a vLLM server before you can use this menu item"),
+			isPresented: $mustCreateSever
+		 ) {
+			 Button("OK") {
+				 selectedItem = nil			// reset the selection to nothing selected
+				 mustCreateSever = false	// turn off the alert
 			 }
 		 }
 	 }
