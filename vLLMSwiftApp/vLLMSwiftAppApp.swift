@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 @main
 struct vLLMSwiftAppApp: App {
@@ -29,4 +30,16 @@ struct vLLMSwiftAppApp: App {
         }
 		  .modelContainer(sharedModelContainer)
     }
+	
+	init() {
+		configureTips()
+		try? Tips.resetDatastore()	}
+	
+	/// Configure the application's available Tips.
+	///
+	/// - seealso: `ApplicationTipConfiguration`
+	func configureTips() {
+		try? Tips.configure([.datastoreLocation(ApplicationTipConfiguration.storeLocation),
+									.displayFrequency(ApplicationTipConfiguration.displayFrequency)])
+	}
 }

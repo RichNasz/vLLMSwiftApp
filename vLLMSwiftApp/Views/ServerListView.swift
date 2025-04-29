@@ -14,10 +14,10 @@ struct ServerListView: View {
 	@Query(sort: \Server.name, order: .forward)
 	var serverList: [Server]
 	
-	
+	private var createServerTip = CreateServerTip()
 	@State private var selectedServer: Server?	// what item is selected in the list
 	
-
+	
 	// Delete server donfirmation dialog state variables
 	@State private var showDeleteConfirmation: Bool = false
 	@State private var serverToDelete: Server? // For toolbar deletion
@@ -25,32 +25,6 @@ struct ServerListView: View {
 	
 	// variables needed in inspector
 	@State private var isShowingInspector: Bool = false 	// needed to toggle the inspector sheet on and off
-	@State private var serverName: String = ""
-	@State private var serverURL: String = ""
-	@State private var serverApiKey: String = ""
-	@State private var serverApiType: APIEndpointType = .llamaStack	// no nil values, so default value is set
-	@State private var serverModelName: String = ""
-	
-	// needed to check values have changes to trigger enabling of Save/Add buttons
-	@State private var originalName: String = ""
-	@State private var originalURL: String = ""
-	@State private var originalApiKey: String = ""
-	@State private var originalApiType: APIEndpointType = .llamaStack
-	@State private var originalModelName: String = ""
-	
-	// Computed property for save button state
-	private var isSaveDisabled: Bool {
-		if selectedServer == nil {
-			return serverName.isEmpty || serverURL.isEmpty	// adding a new server requires a name and URL
-		} else {
-			// For editing: enable only if something has changed
-			return serverName == originalName &&
-			serverURL == originalURL &&
-			serverApiKey == originalApiKey &&
-			serverApiType == originalApiType &&
-			serverModelName ==	originalModelName
-		}
-	}
 	
 	// MARK: ServerList view content definition
 	var body: some View {
@@ -94,17 +68,6 @@ struct ServerListView: View {
 				.onTapGesture {
 					// Populate inspector fields and show it when a server is tapped
 					selectedServer = server
-					serverName = server.name
-					serverURL = server.url
-					serverApiKey = server.apiKey ?? ""
-					serverApiType = server.apiType
-					serverModelName = server.modelName ?? ""
-					// remember values so we can determine if they changd
-					// TODO: see if this can done using Swift Data functionality instead of variables
-					originalName = server.name
-					originalURL = server.url
-					originalApiKey = server.apiKey ?? ""
-					originalModelName = server.modelName ?? ""
 					// Show the inspector so edits can be done
 					isShowingInspector = true
 				}
@@ -115,17 +78,12 @@ struct ServerListView: View {
 					Button(action: {
 						// Clear fields to default values for a new server
 						selectedServer = nil
-						serverName = ""
-						serverURL = ""
-						serverApiKey = ""
-						serverApiType = .llamaStack
-						serverModelName = ""
 						isShowingInspector = true	// show the inspector so user can edit values
 					}) {
 						Label("Add Server", systemImage: "plus")
-//							.symbolEffect( .pulse , options: .repeat(.periodic(delay: 2)), isActive: serverList.isEmpty )
 							.symbolEffect(.breathe.plain.byLayer, options: .repeat(.continuous), isActive: serverList.isEmpty)
 					}
+					.popoverTip(createServerTip)
 					
 				}
 				if !serverList.isEmpty {
@@ -140,6 +98,9 @@ struct ServerListView: View {
 						.disabled(selectedServer == nil)
 					}
 				}
+			}
+			.onAppear() {
+				CreateServerTip.aServerIsDefined = !serverList.isEmpty
 			}
 			// MARK: code for deletion of a server
 			.confirmationDialog(
@@ -173,85 +134,31 @@ struct ServerListView: View {
 			}
 			// using an inspector with inline code instead of a seperate view for simplicity
 			.inspector(isPresented: $isShowingInspector) {
-				VStack {
-					Text(selectedServer == nil ? "Add Server" : "Edit Server")
-						.font(.title2)
-						.bold()
-						.padding()
-						.frame(maxWidth: .infinity, alignment: .leading)
-					Form {
-						Section {
-							TextField("Server Name", text: $serverName)
-								.textFieldStyle(.roundedBorder)
-							TextField("Server URL", text: $serverURL)
-								.textFieldStyle(.roundedBorder)
-							SecureField("Server API Key", text: $serverApiKey)
-								.textFieldStyle(.roundedBorder)
-						} header: {
-							Text("Server Configuration")
-								.font(.subheadline)
-								.foregroundColor(.primary)
-						} footer: {
-							Text("Sprecify the parameter values to connect to the vLLM server.")
-								.font(.caption)
-								.foregroundColor(.secondary)
-						}
+				ServerEditView(server: selectedServer,
+									onSave: { server in
+					if selectedServer == nil {
+						modelContext.insert(server)
+					} else {
+						// copy values from the inspector to the selected server
+						selectedServer?.name = server.name
+						selectedServer?.url = server.url
+						selectedServer?.apiKey = server.apiKey
+						selectedServer?.apiType = server.apiType
+						selectedServer?.modelName = server.modelName
 						
-						Section {
-							TextField("Model Name", text: $serverModelName)
-								.textFieldStyle(.roundedBorder)
-							Picker("API Type", selection: $serverApiType) {
-								Text("Llama-stack").tag(APIEndpointType.llamaStack)
-								Text("OpenAI-compatible").tag(APIEndpointType.openAI)
-							}
-							#if os(macOS)
-							.pickerStyle(.radioGroup)
-							#else
-							.pickerStyle(.automatic)
-							#endif
-							
-						} header: {
-							Text("API Configuration")
-								.font(.subheadline)
-								.foregroundColor(.primary)
-						} footer: {
-							Text("Select the API calling parameters that match your server's endpoint configuration.")
-								.font(.caption)
-								.foregroundColor(.secondary)
+						withAnimation {
+							try? modelContext.save()
 						}
 					}
-					.scrollContentBackground(.hidden)
-					HStack {
-						Spacer()
-						Button("Cancel", action: {
-							isShowingInspector = false
-							selectedServer = nil
-						})
-						Button(selectedServer == nil ? "Add" : "Save") {
-							if let selectedServer {
-								// Update existing server
-								selectedServer.name = serverName
-								selectedServer.url = serverURL
-								selectedServer.apiKey = serverApiKey
-								selectedServer.apiType = serverApiType
-								selectedServer.modelName = serverModelName
-							} else {
-								// Add new server
-								let newServer = Server(name: serverName, url: serverURL, apiType: serverApiType, apiKey: serverApiKey, modelName: serverModelName)
-								modelContext.insert(newServer)
-							}
-							do {
-								try modelContext.save()
-							} catch {
-								print("Failed to save: \(error)")
-							}
-							isShowingInspector = false
-						}
-						.disabled(isSaveDisabled)
-					}
-					.padding()
-					Spacer()
-				}
+					isShowingInspector = false
+					print ("Saved")
+				},
+									onCancel: {
+					// don't need to do anything to manage Swift Data here
+					isShowingInspector = false
+					selectedServer = nil
+					print ("Canceled")
+				})
 			}
 		}
 	}

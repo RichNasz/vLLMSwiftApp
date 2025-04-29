@@ -3,7 +3,15 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in closure #1 in closure #1 in MainAppView.body.getter:MainAppView.swift">
+         contextName = "closure #1 in closure #2 in MainAppView.body.getter:MainAppView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "serverList">
+            </PersistentString>
+            <PersistentString
+               value = "serverList.isEmpty">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #3 in MainAppView.body.getter:MainAppView.swift">
@@ -15,6 +23,29 @@
                value = "serverList.isEmpty">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LlamaStackChatViewModel.sendLLMrequest(forPrompt:onServer:):LlamaStackChatViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #5 in closure #1 in ServerListView.body.getter:ServerListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedServer!=nil">
+            </PersistentString>
+            <PersistentString
+               value = "selectedServer==nil">
+            </PersistentString>
+            <PersistentString
+               value = "!selectedServer==nil">
+            </PersistentString>
+            <PersistentString
+               value = "selectedServer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in closure #1 in closure #1 in MainAppView.body.getter:MainAppView.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

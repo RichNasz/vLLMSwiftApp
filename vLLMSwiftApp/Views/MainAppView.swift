@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 // valid navigation destinations are added as available so the navigation menu can be dynamic
 enum DynamicNavigationDestination: Hashable {
@@ -41,11 +42,11 @@ struct MainAppView: View {
 	
 	// get the Swift Data context and get the current sorted data for use in this view
 	@Environment(\.modelContext) private var modelContext
-	// TODO: upgrade query to just use llama-stack server definitions
-	@Query(sort: \Server.name, order: .forward) var serverList: [Server]
+	@Query(sort: \Server.name, order: .forward) var serverList: [Server]	// need list of servers for dynamic functionality
 	
 	@State private var columnVisibility = NavigationSplitViewVisibility.automatic
 	@State private var selectedItem: NavItem? // Track selected item
+	
 	@State private var lastValidSelection: NavItem? // must allow for nil to avoid default selection
 	@State private var navPath = NavigationPath()
 	
@@ -65,10 +66,9 @@ struct MainAppView: View {
 			NavItem(title: "MacPaw -> OpenAI Chat", icon: "message")
 		])
 	]
-	
 
 	@State private var mustCreateSever: Bool = false
-	
+	private var chooseMenuItemTip = ChooseMenuItemTip()
 	
     var body: some View {
 		 NavigationSplitView(columnVisibility: $columnVisibility) {
@@ -82,7 +82,6 @@ struct MainAppView: View {
 							 if( item.destination == nil ) {
 								 Label(item.title, systemImage: item.icon)
 									 .padding(.vertical, 4)
-//									 .foregroundColor(item.destination != nil ? .primary : .gray)
 									 .foregroundColor(.gray)
 									 .accessibilityLabel("\(item.title) navigation item")
 									 .selectionDisabled(true)
@@ -101,6 +100,12 @@ struct MainAppView: View {
 			 }
 			 .navigationSplitViewColumnWidth( min: 205, ideal: 210, max: 225)
 		 } detail: {
+			 VStack {	// create a view so we can put the condition inside of it
+				 if !serverList.isEmpty && selectedItem == nil {
+					 TipView(chooseMenuItemTip, arrowEdge: .leading)
+					 .padding(.vertical, 8)
+				 }
+			 }
 			 // using a navigation stack here so we can drill down an infinite number of times in the detail
 			 // area, and automatically get the ability to pop the stack going back.
 			 NavigationStack(path: $navPath) {
@@ -111,36 +116,41 @@ struct MainAppView: View {
 						 case .llamaStackChat:
 							 LlamaStackChatView()
 					 }
-				 } else {
-					 Text("Select an menu item from the sidebar")
-						 .foregroundColor(.red)
 				 }
+			 }
+			 
+		 }
+		 .onAppear {
+			 if serverList.isEmpty {
+				 selectedItem = navSections.flatMap { $0.items }.first { $0.title == "vLLM Servers" }
 			 }
 		 }
 		 .onChange(of: selectedItem) {	// check for any conditions why the selected item shouldn't change
-			 if let currentItem = selectedItem {
-				 // code to disable selection of a menu item that depends on a server definition being available isn't working
-				 // forced to use an alternate method which is to detect the condition and throw an alert
-				 // TODO: find a more elegant way to handle this condtion
-				 if currentItem.title != "vLLM Servers" && serverList.isEmpty {
-					 mustCreateSever = true
-				 }
-			 }
-		 }
-		 .alert(
-			Text("You must define a vLLM server before you can use this menu item"),
-			isPresented: $mustCreateSever
-		 ) {
-			 Button("OK") {
-				 selectedItem = nil			// reset the selection to nothing selected
-				 mustCreateSever = false	// turn off the alert
+			 if serverList.isEmpty {
+				 selectedItem = navSections.flatMap { $0.items }.first { $0.title == "vLLM Servers" }
 			 }
 		 }
 	 }
 }
 
+//
+// Below is just for Previewing in Xcode
+private struct PreviewWrapper: View {
+	
+	init()
+	{
+		try? Tips.resetDatastore()
+		Tips.showAllTipsForTesting()
+	}
+	
+	var body: some View {
+		MainAppView()
+			.navigationTitle("vLLM Inference Endpoint Examples") // Set sidebar title
+	}
+}
 
 #Preview {
-	MainAppView()
-		.navigationTitle("vLLM Inference Endpoint Examples") // Set sidebar title
+//	MainAppView()
+//		.navigationTitle("vLLM Inference Endpoint Examples") // Set sidebar title
+	PreviewWrapper()
 }
