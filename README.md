@@ -31,7 +31,10 @@ Alternatively, in Xcode, go to File > Open, browse to the cloned folder, and sel
 
 You can clone the repository directly within Xcode
    - In Xcode, navigate to **Integrate > Clone...**
-	- In the search field type: [https://github.com/RichNasz/vLLMSwiftApp.git](https://github.com/RichNasz/vLLMSwiftApp.git)
+	- In the search field type:
+	```bash
+   https://github.com/RichNasz/vLLMSwiftApp.git
+   ```
 	- In the dialog box that appears, select the main branch, and then press the **Clone** button.
 	- In the file picker dialog that appears, select the directory to clone the project into, and then press the **Clone** button.
 	- The repository will be cloned, and the project will be opened and ready use.
