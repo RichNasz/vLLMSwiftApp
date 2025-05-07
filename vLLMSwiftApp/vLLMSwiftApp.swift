@@ -9,9 +9,15 @@ import SwiftUI
 import SwiftData
 import TipKit
 
+/// Entry point for the applicaiton
+///
+/// This is the entry point for the application. Setup for both Swift Data and TipKit are performed.
+/// ``MainAppView`` is the view that is shown, and controls navigation for the application.
+///
 @main
-struct vLLMSwiftAppApp: App {
-    var sharedModelContainer: ModelContainer = {
+struct vLLMSwiftApp: App {
+   /// stores the container for the application data
+	var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Server.self,
         ])
@@ -23,7 +29,8 @@ struct vLLMSwiftAppApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
-
+	
+	/// SwiftUI view definition
     var body: some Scene {
         WindowGroup {
 			  MainAppView()	//  one main NavigationStackView for the app
@@ -31,13 +38,19 @@ struct vLLMSwiftAppApp: App {
 		  .modelContainer(sharedModelContainer)
     }
 	
+	/// Executes required code when the view initializes
+	///
+	/// Currently there is limited initialization required when the applications starts.
+	/// - TipKit initialization to provide user guidance
+	///
 	init() {
 		configureTips()
-		try? Tips.resetDatastore()	}
+		try? Tips.resetDatastore() // allows usage of app as if launched for first time
+	}
 	
 	/// Configure the application's available Tips.
 	///
-	/// - seealso: `ApplicationTipConfiguration`
+	/// - seealso: ``ApplicationTipConfiguration``
 	func configureTips() {
 		try? Tips.configure([.datastoreLocation(ApplicationTipConfiguration.storeLocation),
 									.displayFrequency(ApplicationTipConfiguration.displayFrequency)])

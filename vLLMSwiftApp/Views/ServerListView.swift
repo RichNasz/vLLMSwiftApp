@@ -8,9 +8,13 @@
 import SwiftUI
 import SwiftData
 
+/// View for maintaining the list of know servers the application can connect to
+///  
+///  The user can create, update, and delete server definitions that are persisted using Swift Data.
 struct ServerListView: View {
 	// get the Swift Data context and get the current sorted data for use in this view
 	@Environment(\.modelContext) private var modelContext
+	/// list of known servers that are stored in Swift Data
 	@Query(sort: \Server.name, order: .forward)
 	var serverList: [Server]
 	
@@ -26,7 +30,7 @@ struct ServerListView: View {
 	// variables needed in inspector
 	@State private var isShowingInspector: Bool = false 	// needed to toggle the inspector sheet on and off
 	
-	// MARK: ServerList view content definition
+	/// view used to present the list of servers
 	var body: some View {
 		NavigationStack {
 			List( serverList, selection: $selectedServer ) { server in

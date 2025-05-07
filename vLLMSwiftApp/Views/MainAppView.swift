@@ -10,13 +10,13 @@ import SwiftData
 import TipKit
 
 // valid navigation destinations are added as available so the navigation menu can be dynamic
-enum DynamicNavigationDestination: Hashable {
+private enum DynamicNavigationDestination: Hashable {
 	case vllmServers
 	case llamaStackChat
 }
 
-// Define a simple struct for navigation items
-struct NavItem: Identifiable, Hashable {
+/// structure for an indidividual navigaiton item used in the view
+private struct NavItem: Identifiable, Hashable {
 	let id = UUID()
 	let title: String	// used for the menu label & used to set the dynamic view destination
 	let icon: String 	// SF Symbol name
@@ -32,16 +32,22 @@ struct NavItem: Identifiable, Hashable {
 }
 
 // Define section struct
-struct NavSection: Identifiable, Hashable {
+///  structure for sections within the navigation sidebar
+///
+///  Each section can contain multiple ``NavItem`` which allows grouping of like items
+private struct NavSection: Identifiable, Hashable {
 	let id = UUID()
 	let title: String		// title is used for the menu label
 	let items: [NavItem]	// each section can have multiple navigation items
 }
 
+/// Main view for the application
+///
+/// This view gets created when the applicaiton starts up, and is established the base of the view navigation heiracrchy that all subviews are used within. Creation of the menu in the left hand sidebar is built dynamically with menu items enabled or disabled based on applicaiton state, or availability of a coded subview to implement functionality. Review the <doc:Understanding-basic-application-structure> article for more information on basic application structure.
 struct MainAppView: View {
-	
-	// get the Swift Data context and get the current sorted data for use in this view
+	/// access the Swift data content
 	@Environment(\.modelContext) private var modelContext
+	/// list of servers to use for determining what menu items should be enabled.
 	@Query(sort: \Server.name, order: .forward) var serverList: [Server]	// need list of servers for dynamic functionality
 	
 	@State private var columnVisibility = NavigationSplitViewVisibility.automatic
@@ -70,6 +76,7 @@ struct MainAppView: View {
 	@State private var mustCreateSever: Bool = false
 	private var chooseMenuItemTip = ChooseMenuItemTip()
 	
+	/// the base view for the entire application
     var body: some View {
 		 NavigationSplitView(columnVisibility: $columnVisibility) {
 			 // Build the sidebar dynamically and only enable items that have views implemented

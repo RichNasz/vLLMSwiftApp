@@ -4,26 +4,37 @@
 //
 //  Created by Richard Naszcyniec on 4/16/25.
 //
-// This view is used to collect an input prompt from a user.
-// It is intended to be used by a parent view
 
 import SwiftUI
 
+/// View used to collect user text to send for inference
+///
+/// This view is indented to be used by all of the  views that interact with vLLM regardless of the API being used.
+///
 struct ChatInputView: View {
 	// Allows the calling view to indicate when the message collected by this view
 	// is being used communication with the LLM.
 	private var isSending: Bool
-	// Set up a closure so the caller can take and action when the button is pressed
-	// This provides the option of low level control for the user
+	/// The closure that implemented by the calling view as part of struct initialization
+	///
+	/// A string will be sent as a parameter to the closure with the value representing the text that the user wants to send to the server.
 	let onSend: (String) -> Void
 	
 	@State private var message: String = ""
 	
+	/// Initialization method for the struct
+	///
+	/// The initializer is critical to establishing the interaction between this view, and the calling view that it is a sub-view of.
+	///
+	/// - Parameters:
+	///   - isSending: this value is set to indicate if the view is sending an inference request. The view sending this value should use an @State var so that SwiftUI can monitor the value and send updates to this view when it changes.
+	///   - onSend: this is a closure that provides the text that the user indicated they want to send for inference. The calling view takes String value passed to the closure and uses it as required to make the inference call.
 	init(isSending: Bool, onSend: @escaping (String) -> Void) {
 		self.isSending = isSending
 		self.onSend = onSend
 	}
 	
+	/// view definition for the user interface
 	var body: some View {
 		HStack {
 			// Multiline text input
@@ -106,10 +117,3 @@ struct ChatInputView: View {
 	
 	return ChatInputPreviewWrapper()
 }
-
-//#Preview {
-//	var isSending: Bool = false
-//	ChatInputView(isSending: self.$isSending) { message in
-//		print("Message: \(message)")
-//	}
-//}
