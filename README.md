@@ -18,36 +18,33 @@ Follow these steps to build and run the Xcode project in this repository.
 
 1. **Clone using command line**:
 
-You can clone the repository directly into the a directory of your choice using the terminal application and typing in the following:
+You can clone the repository directly into a directory of your choice using the terminal application and typing in the following:
    ```bash
    git clone https://github.com/RichNasz/vLLMSwiftApp.git
    cd vLLMSwiftApp
    ```
    
 Navigate to the cloned folder in the Finder, locate the .xcodeproj or .xcworkspace file, and double-click it to open in Xcode.
-Alternatively, in Xcode, go to File > Open, browse to the cloned folder, and select the project file.
+Alternatively, in Xcode, go to **File > Open**, browse to the cloned folder, and select the project file.
    
 2. **Clone using Xcode**
 
 You can clone the repository directly within Xcode
-   - In Xcode, navigate to **Integrate > Clone...**
-	- In the search field type: https://github.com/RichNasz/vLLMSwiftApp.git 
-	- In the dialog box that appears, select the main branch, and then press the **Clone** button.
-	- In the file picker dialog that appears, select the directory to clone the project into, and then press the **Clone** button.
-	- The repository will be cloned, and the project will be opened and ready use.
+- In Xcode, navigate to **Integrate > Clone...**
+- In the search field type: https://github.com/RichNasz/vLLMSwiftApp.git
+- In the dialog box that appears, select the main branch, and then press the **Clone** button.
+- In the file picker dialog that appears, select the directory to clone the project into, and then press the **Clone** button.
+- The repository will be cloned, and the project will be opened and ready for use.
 	
 ### Xcode housekeeping
 
 There are several actions you need to take to have a smooth experience working with the project in Xcode:
-	- During your first build a dialog box asking you to Enable & Trust the OpenAPIGenerator extension will pop up. Select the option to “Trust & Enable” when prompted. If you don’t do this, code for the SDK can’t be generated, and the code won’t work
-	- You need to have your Apple developer account set up in Xcode so that projects you work on can be signed. You can create a free Apple Developer account for this, or use an existing account. make sure your developer account is set using the **Settings… -> Accounts** menu option.
-	- Clean the build folder using the **Product -> Clean Build Folder…** menu option.
-	- Start a new build using the **Product ->Build** menu option. Once completed you will be able to run the application.
-	- Generate the documentation for the project by selecting the **Product -> Build Documentation** menu item. Once completed you can access the documentation using the **Help -> Developer Documentation** menu item.
+- During your first build a dialog box asking you to Enable & Trust the OpenAPIGenerator extension will pop up. Select the option to “Trust & Enable” when prompted. If you don’t do this, code for the SDK can’t be generated, and the code won’t work
+- You need to have your Apple developer account set up in Xcode so that projects you work on can be signed. You can create a free Apple Developer account for this, or use an existing account. Make sure your developer account is set using the **Settings… -> Accounts** menu option.
+- Clean the build folder using the **Product -> Clean Build Folder…** menu option.
+- Start a new build using the **Product ->Build** menu option. Once completed you will be able to run the application.
+- Generate the documentation for the project by selecting the **Product -> Build Documentation** menu item. Once completed you can access the documentation using the **Help -> Developer Documentation** menu item.
 	
- 
-	
-
 ## Acknowledgements
 
 Several open source projects are used in associated with this project:
