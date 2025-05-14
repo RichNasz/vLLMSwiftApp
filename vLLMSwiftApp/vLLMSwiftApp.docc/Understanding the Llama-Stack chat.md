@@ -6,6 +6,8 @@ Learn about implementing text chat functionality using Llama-Stack
 
 This article focuses on how Llama-Stack inference API  is used to interact with models served by vLLM. The Llama-Stack API can be reviewed in the [API Reference section](https://llama-stack.readthedocs.io/en/latest/references/api_reference/index.html) of the Llama-Stack project documentation. 
 
+>Important: You must have access to a Llama-Stack server for the API to connect to. If you need to set up a server for the first time, the [Llama-Stack documentation](https://llama-stack.readthedocs.io/en/latest/getting_started/detailed_tutorial.html#step-1-installation-and-setup) can guide you on how to set up a server. You may also need to read about how to [set up vLLM as an inference provider for Llama-Stack](https://blog.vllm.ai/2025/01/27/intro-to-llama-stack-with-vllm.html).
+
 The [source YAML for the API](https://github.com/meta-llama/llama-stack/blob/main/docs/_static/llama-stack-spec.yaml), in OpenAPI 3.1.0 format is also available. The API consists of two main components:
 - **Endpoints:** REST endpoints that clients call and servers implement.
 - **Schemas:** Data structures used when interacting with these endpoints.

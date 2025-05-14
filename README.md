@@ -13,6 +13,7 @@ Follow these steps to build and run the Xcode project in this repository.
 - **Xcode**: Version 16.3 or later (download from the [Mac App Store](https://apps.apple.com/us/app/xcode/id497799835) or [Apple web site](https://developer.apple.com/xcode/).
 - **macOS**: macOS 15.0 (Sequoia) or later.
 - An Apple Developer account (optional, for running on physical devices).
+- **Access to a Llama-stack server**: required to exercise the Llama-Stack reote inference API. [Llama-Stack documentation](https://llama-stack.readthedocs.io/en/latest/getting_started/detailed_tutorial.html#step-1-installation-and-setup) can guide you on how to set up a server. You may also want to read about--or share--how to [set up vLLM as an inference provider for Llama-Stack](https://blog.vllm.ai/2025/01/27/intro-to-llama-stack-with-vllm.html).
 
 ### Clone the repository
 
