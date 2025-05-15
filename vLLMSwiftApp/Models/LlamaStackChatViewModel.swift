@@ -38,7 +38,7 @@ import LlamaStackClient
 	func setServer( server: Server) {
 		self.server = server
 		llmResponse = ""	// also reset the response since there is a new server
-		// TODO: consider adding code to save the exisitng converstion before resetting so user can return to it
+		// TODO: consider adding code to save the exisitng conversation before resetting so user can return to it
 	}
 	
 

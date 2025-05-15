@@ -42,7 +42,7 @@ enum ChatMessageRole: Codable {
 	}
 }
 
-/// This class is used to track converstions
+/// This class is used to track converstions, but is currently not implemented.
 ///
 /// Conversations are made up of multiple indvidual ChatMessages.
 /// This class **is not** currently used and is a placeholder for future functional capabilities.
