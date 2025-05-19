@@ -44,15 +44,22 @@ import SwiftOpenAI
 	/// - Parameter message: simple string value with the prompt to send to the server
 	func sendMessage(_ message: String) async {
 		if server == nil {
-			llmResponse = "Server not set. Message could not be sent"
+			llmResponse = "Error: Server not set. Message could not be sent"
 			return
 		}
 		
 		do {
 			try await sendLLMrequest(forPrompt: message, onServer: server!)
-		} catch {
+		}
+		catch swiftOpenAIInferenceError.apiError (let statusCode, let description) {
+			llmResponse = "Error: <\(statusCode)>, \(description)"
+		}
+		catch swiftOpenAIInferenceError.invalidURL {
+			llmResponse = "Error: Invalid server URL:\(server?.url ?? "No URL specified")"
+		}
+		catch {
 			print("Error sending message: \(error)")
-			llmResponse = "Error: \(error.localizedDescription)"
+			llmResponse = "Error: \(error)"
 		}
 		
 	}
@@ -74,21 +81,27 @@ import SwiftOpenAI
 	/// - Parameters:
 	///   - prompt: the user request (prompt) to send for inference
 	///   - lsServer: the llama-stack server definition to send the inference request to
-	private func sendLLMrequest(forPrompt prompt: String, onServer openAIServer: Server) async throws {
+	private func sendLLMrequest(forPrompt prompt: String, onServer: Server) async throws {
 		
 		// series of guard stements used since we will use the let values later in the code
-		guard let url = URL(string: openAIServer.url) else {
+		guard let url = URL(string: onServer.url) else {
 			throw swiftOpenAIInferenceError.invalidURL
 		}
-		guard let modelName = openAIServer.modelName else {
+		guard let modelName = onServer.modelName else {
 			throw swiftOpenAIInferenceError.noModelName
 		}
 		
+		// default value is 60 seconds, and if you need longer than that, set the durations here
+		let configuration = URLSessionConfiguration.default
+		configuration.timeoutIntervalForRequest = 60 // set same as default for now.
+		
 		let inferenceService: OpenAIService // allowed due to deferred initialization
-		if let apiKey = openAIServer.apiKey {	// if we have an API key then use it
-			inferenceService = OpenAIServiceFactory.service(apiKey: .apiKey(apiKey), baseURL: openAIServer.url, )
+		if let apiKey = onServer.apiKey {	// if we have an API key then use it
+//			inferenceService = OpenAIServiceFactory.service(apiKey: .apiKey(apiKey), baseURL: onServer.url)
+			inferenceService = OpenAIServiceFactory.service(apiKey: apiKey, overrideBaseURL: onServer.url, configuration: configuration)
 		} else {
-			inferenceService = OpenAIServiceFactory.service(baseURL: openAIServer.url)
+//			inferenceService = OpenAIServiceFactory.service(baseURL: onServer.url)
+			inferenceService = OpenAIServiceFactory.service(apiKey: "", overrideBaseURL: onServer.url, configuration: configuration)
 		}
 		
 		// Set the parameters that will be used to request inference.
