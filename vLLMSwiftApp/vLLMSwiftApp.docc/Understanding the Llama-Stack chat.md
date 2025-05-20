@@ -20,7 +20,7 @@ A significant portion of the llama-stack-client-swift SDK code is automatically 
 
 ### User interface
 
-The user interface for interacting with the Llama-Stack server that in turn interacts with vLLM for inference is contained within ``LlamaStackChatView``. That leverages a subview called ``ChatInputView`` that provides an agnostic method for collecting the request from the user to send for inference.
+The user interface for interacting with the Llama-Stack server that in turn interacts with vLLM for inference is contained within ``LlamaStackChatView``. That leverages a subview called ``ChatInputView`` that provides an API agnostic method for collecting the request from the user to send for inference.
 
 
 

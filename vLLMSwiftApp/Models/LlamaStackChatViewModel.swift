@@ -14,7 +14,7 @@ import LlamaStackClient
 /// Model class for the LlamaStackChatView
 ///
 ///Uses @Observable macro instead of @ObservableObject and @Published as it is easier to proagate changes
-/// to the llmResponse for the UI to pick up on.
+/// to the ``llmResponse`` for SwiftUI to detect and re-render.
 ///
 @Observable class LlamaStackChatViewModel: ObservableObject {
 	

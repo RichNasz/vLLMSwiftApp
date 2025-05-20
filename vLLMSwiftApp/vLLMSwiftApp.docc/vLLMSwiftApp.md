@@ -56,3 +56,8 @@ vLLM is an inference engine capable of providing multiple ways that applications
 - ``SwiftOpenAIChatView``
 - ``SwiftOpenAIChatViewModel``
 
+### MacPaw/OpenAI Chat
+- <doc:Understanding-the-MacPaw-OpenAI-chat>
+- ``MacPawOpenAIChatView``
+- ``MacPawOpenAIChatViewModel``
+

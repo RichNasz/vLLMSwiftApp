@@ -1,5 +1,5 @@
 {
-  "originHash" : "17d2621346a0486a2334e4b792243322a755852c320fd3d7068f9a5e3b353b02",
+  "originHash" : "5246f66193a3e67b538f8d5baf523499c204a478777135638d54b1b9887eb911",
   "pins" : [
     {
       "identity" : "llama-stack-client-swift",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "ce6005c88bad1d39b502ae96e3d2a2624ae5ee6d",
         "version" : "0.2.2"
+      }
+    },
+    {
+      "identity" : "openai",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MacPaw/OpenAI.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "9261cd39d55a718bcc360fbc29515a331cad5dbb"
       }
     },
     {

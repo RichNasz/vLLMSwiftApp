@@ -8,11 +8,7 @@
 import Foundation
 import SwiftData
 
-/// represents an the complete list of value API endpoint types the application can connect to
-enum APIEndpointType: Codable {
-	case openAI
-	case llamaStack
-}
+
 
 /// The class models a server entity.
 ///
@@ -32,6 +28,12 @@ final class Server {
 	var apiType: APIEndpointType
 	/// Optional name of the model to send inference requests to
 	var modelName: String?
+	
+	/// represents an the complete list of value API endpoint types the application can connect to
+	enum APIEndpointType: Codable {
+		case openAI
+		case llamaStack
+	}
 	
 	/// only initializer provided for class instantiation
 	/// - Parameters:

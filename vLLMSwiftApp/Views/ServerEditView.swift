@@ -17,7 +17,7 @@ struct ServerEditView: View {
 	@State private var draftName: String
 	@State private var draftURL: String
 	@State private var draftApiKey: String
-	@State private var draftApiType: APIEndpointType
+	@State private var draftApiType: Server.APIEndpointType
 	@State private var draftModelName: String
 	
 	init(server: Server?, onSave: @escaping (Server) -> Void, onCancel: @escaping () -> Void) {
@@ -60,8 +60,8 @@ struct ServerEditView: View {
 					 TextField("Model Name", text: $draftModelName)
 						 .textFieldStyle(.roundedBorder)
 					 Picker("API Type", selection: $draftApiType) {
-						 Text("Llama-stack").tag(APIEndpointType.llamaStack)
-						 Text("OpenAI-compatible").tag(APIEndpointType.openAI)
+						 Text("Llama-stack").tag(Server.APIEndpointType.llamaStack)
+						 Text("OpenAI-compatible").tag(Server.APIEndpointType.openAI)
 					 }
 #if os(macOS)
 					 .pickerStyle(.radioGroup)

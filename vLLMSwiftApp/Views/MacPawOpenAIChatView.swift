@@ -1,18 +1,18 @@
 //
-//  SwiftOpenAIChatView.swift
+//  MacPawOpenAIChatView.swift
 //  vLLMSwiftApp
 //
-//  Created by Richard Naszcyniec on 5/14/25.
+//  Created by Richard Naszcyniec on 5/19/25.
 //
 
 import SwiftData
 import SwiftUI
 
-/// View used to interact with vLLM using the [SwiftOpenAI](https://github.com/jamesrochabrun/SwiftOpenAI) OSS project
+/// View used to interact with vLLM using the [MacPaw/OpenAI](https://github.com/MacPaw/OpenAI) OSS project
 ///
 /// This view contains the code required to implement a text chat with a vLLM server, or Llama Stack server via an OpenAI-compatible endpoint.
-/// Interaction with a  server is performed using SwiftOpenAI functionality.
-struct SwiftOpenAIChatView: View {
+/// Interaction with a  server is performed using MacPaw/OpenAI functionality.
+struct MacPawOpenAIChatView: View {
 	// get the Swift Data context and get the current sorted data for use in this view
 	@Environment(\.modelContext) private var modelContext
 	/// list of servers persisted by Swift Data that is used by the user to select what server to interact with
@@ -21,8 +21,8 @@ struct SwiftOpenAIChatView: View {
 	// Declare the @State variables this view owns and will share with subviews
 	// Clear ownership of variables in required for SwiftUI updates
 	@State private var pickedServer: Server?  // Optional value bound to Picker
-	@State private var messages: [ChatMessage] = []  // Local array for chat messages that are observable
-	@StateObject private var chatManager: SwiftOpenAIChatViewModel = .init()  // code for interacting with SwiftOpenAI
+	@State private var messages: [ChatMessage] = []  // Local array for chat message history that is observable
+	@StateObject private var chatManager: MacPawOpenAIChatViewModel = .init()  // code for interacting with SwiftOpenAI
 	@State private var lastScrollListId: UUID?  // use to make sure we always scroll messsages to the bottom
 	@State private var isSending: Bool = false  // track sending to LLM state
 	@State private var currentLLMChatMessage: ChatMessage?
@@ -111,7 +111,7 @@ struct SwiftOpenAIChatView: View {
 				}
 			}
 		}
-		.navigationTitle("SwiftOpenAI Chat")
+		.navigationTitle("MacPaw/OpenAI Chat")
 		// provide a default selection. The view shouldn't be used if the list of servers is empty
 		.onAppear {
 			if pickedServer == nil, !serverList.isEmpty {
@@ -251,4 +251,3 @@ private struct PreviewWrapper: View {
 #Preview {
 	PreviewWrapper()
 }
-

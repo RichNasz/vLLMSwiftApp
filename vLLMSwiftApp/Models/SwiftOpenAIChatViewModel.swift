@@ -12,7 +12,7 @@ import SwiftOpenAI
 /// Model class for the SwiftOpenAIChatView
 ///
 ///Uses @Observable macro instead of @ObservableObject and @Published as it is easier to proagate changes
-/// to the llmResponse for the UI to pick up on.
+/// to the ``llmResponse`` for SwiftUI to detect and re-render.
 ///
 @Observable class SwiftOpenAIChatViewModel: ObservableObject {
 	
@@ -84,9 +84,14 @@ import SwiftOpenAI
 	private func sendLLMrequest(forPrompt prompt: String, onServer: Server) async throws {
 		
 		// series of guard stements used since we will use the let values later in the code
-		guard let url = URL(string: onServer.url) else {
+		guard let urlComponents = URLComponents(string: onServer.url) else {
 			throw swiftOpenAIInferenceError.invalidURL
 		}
+		// make sure scheme is valid (i.e. https), and host contains a value
+		guard urlComponents.scheme != nil, urlComponents.host != nil else {
+			throw swiftOpenAIInferenceError.invalidURL
+		}
+		// need a model name to make an inference call
 		guard let modelName = onServer.modelName else {
 			throw swiftOpenAIInferenceError.noModelName
 		}

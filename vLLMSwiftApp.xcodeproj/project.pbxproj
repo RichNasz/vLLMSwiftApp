@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		421FFD212DB13C5700F3C10A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 421FFD202DB13C4C00F3C10A /* README.md */; };
 		421FFD242DB1A1DC00F3C10A /* LlamaStackClient in Frameworks */ = {isa = PBXBuildFile; productRef = 421FFD232DB1A1DC00F3C10A /* LlamaStackClient */; };
+		429504742DDB723300B8856A /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 429504732DDB723300B8856A /* OpenAI */; };
 		42999EC72DD4D56C00B2CDB6 /* SwiftOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 42999EC62DD4D56C00B2CDB6 /* SwiftOpenAI */; };
 		42D1A70A2DBA97E00016403C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 42D1A7092DBA97E00016403C /* LICENSE */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42999EC72DD4D56C00B2CDB6 /* SwiftOpenAI in Frameworks */,
+				429504742DDB723300B8856A /* OpenAI in Frameworks */,
 				421FFD242DB1A1DC00F3C10A /* LlamaStackClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +142,7 @@
 			packageProductDependencies = (
 				421FFD232DB1A1DC00F3C10A /* LlamaStackClient */,
 				42999EC62DD4D56C00B2CDB6 /* SwiftOpenAI */,
+				429504732DDB723300B8856A /* OpenAI */,
 			);
 			productName = vLLMSwiftApp;
 			productReference = 421FFCA32DAEB65A00F3C10A /* vLLMSwiftApp.app */;
@@ -226,6 +229,7 @@
 			packageReferences = (
 				421FFD222DB1A1DC00F3C10A /* XCRemoteSwiftPackageReference "llama-stack-client-swift" */,
 				42999EC52DD4D56C00B2CDB6 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
+				429504722DDB723300B8856A /* XCRemoteSwiftPackageReference "OpenAI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 421FFCA42DAEB65A00F3C10A /* Products */;
@@ -645,6 +649,14 @@
 				minimumVersion = 0.2.2;
 			};
 		};
+		429504722DDB723300B8856A /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		42999EC52DD4D56C00B2CDB6 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jamesrochabrun/SwiftOpenAI";
@@ -660,6 +672,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 421FFD222DB1A1DC00F3C10A /* XCRemoteSwiftPackageReference "llama-stack-client-swift" */;
 			productName = LlamaStackClient;
+		};
+		429504732DDB723300B8856A /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 429504722DDB723300B8856A /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
 		};
 		42999EC62DD4D56C00B2CDB6 /* SwiftOpenAI */ = {
 			isa = XCSwiftPackageProductDependency;
