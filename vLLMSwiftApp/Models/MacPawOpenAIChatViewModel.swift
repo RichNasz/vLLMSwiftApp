@@ -116,7 +116,6 @@ import OpenAI
 		let chatQuery = ChatQuery(messages: [.init(role: .user, content: prompt)!], model: modelName)
 		
 		llmResponse = "" // need to set the variable that holds the response to empty before inference call is made
-		
 		// use structured concurrency to make the inference request and process results
 		do {
 			for try await result in openAI.chatsStream(query: chatQuery) {
@@ -131,49 +130,50 @@ import OpenAI
 					case .stop:
 						break // TODO: implement any code for last chunk returned
 					case .length:
-						break	// TODO: implement any code if the cumulative tokens exceed max_tokens
+						throw macPawOpenAIInferenceError.apiError(statusCode: -1, description: "OpenAI cumulative tokens exceed max_tokens")
+						// TODO: implement any code if the cumulative tokens exceed max_tokens
 					case .contentFilter:
-						break // TODO: cod for when OpenAI safety filters are triggered
+						throw macPawOpenAIInferenceError.apiError(statusCode: -1, description: "OpenAI safety filters were triggered")
+						// TODO: code for when OpenAI safety filters are triggered
 					case .error:
-						break	// TODO: find where error details are available
+						throw macPawOpenAIInferenceError.apiError(statusCode: -1, description: "OpenAI Error: check prompt")
+						// TODO: find where error details are available
 					case .functionCall:
 						break	// TODO: code for handling function calls
 					case .toolCalls:
 						break	// TODO: code for handling tool calls
 					case .none:
-						break	// TODO: implement code for cases where the response is incomplete or interrupted.
+						throw macPawOpenAIInferenceError.apiError(statusCode: -1, description: "OpenAI Error: response is incomplete or interrupted")
+						// TODO: implement code for cases where the response is incomplete or interrupted.
 				}
 				
 			}
-		} catch {
-			// Print error type and details when debugging
-//			print("Error type: \(type(of: error))")
-//			print("API error description: \(error)")
-		
-			// typeif does not work in a switch
-			if type(of: error) == OpenAIError.self {
-				let errorText = error.localizedDescription
-				switch errorText {
-					case let errorCheck where errorCheck.contains("400"):
-						throw macPawOpenAIInferenceError.apiError(statusCode: 400, description: "Bad request: Check model name")
-					case let errorCheck where errorCheck.contains("401"):
-						throw macPawOpenAIInferenceError.apiError(statusCode: 401, description: "Invalid API key")
-					case let errorCheck where errorCheck.contains("429"):
-						throw macPawOpenAIInferenceError.apiError(statusCode: 429, description: "Rate limit of quota exceeded")
-					case let errorCheck where errorCheck.contains("503"):
-						throw macPawOpenAIInferenceError.apiError(statusCode: 429, description: "The engine is currently overloaded, please try again later")
-					default:
-						throw macPawOpenAIInferenceError.apiError(statusCode: -999, description: " Unkown API error: \(errorText)")
-				}
+		}
+		catch let error as OpenAIError {
+			let errorText = error.localizedDescription
+			switch errorText {
+				case let errorCheck where errorCheck.contains("400"):
+					throw macPawOpenAIInferenceError.apiError(statusCode: 400, description: "Bad request: Check model name")
+				case let errorCheck where errorCheck.contains("401"):
+					throw macPawOpenAIInferenceError.apiError(statusCode: 401, description: "Invalid API key")
+				case let errorCheck where errorCheck.contains("429"):
+					throw macPawOpenAIInferenceError.apiError(statusCode: 429, description: "Rate limit of quota exceeded")
+				case let errorCheck where errorCheck.contains("503"):
+					throw macPawOpenAIInferenceError.apiError(statusCode: 429, description: "The engine is currently overloaded, please try again later")
+				default:
+					throw macPawOpenAIInferenceError.apiError(statusCode: -999, description: " Unkown API error: \(errorText)")
 			}
-			else {
-				let errorText = error.localizedDescription
-				switch errorText {
-					case let errorCheck where errorCheck.contains("-1004"):
-						throw macPawOpenAIInferenceError.apiError(statusCode: -1004, description: "Could not connect to the server")
-					default:
-						throw macPawOpenAIInferenceError.apiError(statusCode: -999, description: " \(errorText)")
-				}
+		}
+		catch {
+			// Print error type and details when debugging
+			//			print("Error type: \(type(of: error))")
+			//			print("API error description: \(error)")
+			let errorText = error.localizedDescription
+			switch errorText {
+				case let errorCheck where errorCheck.contains("-1004"):
+					throw macPawOpenAIInferenceError.apiError(statusCode: -1004, description: "Could not connect to the server")
+				default:
+					throw macPawOpenAIInferenceError.apiError(statusCode: -999, description: " \(errorText)")
 			}
 		}
 	}

@@ -102,10 +102,8 @@ import SwiftOpenAI
 		
 		let inferenceService: OpenAIService // allowed due to deferred initialization
 		if let apiKey = onServer.apiKey {	// if we have an API key then use it
-//			inferenceService = OpenAIServiceFactory.service(apiKey: .apiKey(apiKey), baseURL: onServer.url)
 			inferenceService = OpenAIServiceFactory.service(apiKey: apiKey, overrideBaseURL: onServer.url, configuration: configuration)
 		} else {
-//			inferenceService = OpenAIServiceFactory.service(baseURL: onServer.url)
 			inferenceService = OpenAIServiceFactory.service(apiKey: "", overrideBaseURL: onServer.url, configuration: configuration)
 		}
 		
