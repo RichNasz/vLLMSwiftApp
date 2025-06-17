@@ -13,6 +13,8 @@ import TipKit
 private enum DynamicNavigationDestination: Hashable {
 	case vllmServers
 	case llamaStackChat
+	case swiftOpenAI
+	case macPawOpenAI
 }
 
 /// structure for an indidividual navigaiton item used in the view
@@ -26,6 +28,8 @@ private struct NavItem: Identifiable, Hashable {
 		switch title {		// NOTE: the case statement relies on finding matches to title values
 			case "vLLM Servers": return .vllmServers
 			case "Llama-Stack Chat": return .llamaStackChat
+			case "SwiftOpenAI Chat": return .swiftOpenAI
+			case "MacPaw -> OpenAI Chat": return .macPawOpenAI
 			default: return nil
 		}
 	}
@@ -68,7 +72,7 @@ struct MainAppView: View {
 		NavSection(title: "OpenAI examples", items: [
 			NavItem(title: "URLSession Chat", icon: "message"),
 			NavItem(title: "AlamoFire Chat", icon: "message"),
-			NavItem(title: "SwiftOpenAPI Chat", icon: "message"),
+			NavItem(title: "SwiftOpenAI Chat", icon: "message"),
 			NavItem(title: "MacPaw -> OpenAI Chat", icon: "message")
 		])
 	]
@@ -122,6 +126,10 @@ struct MainAppView: View {
 							 ServerListView()
 						 case .llamaStackChat:
 							 LlamaStackChatView()
+						 case .swiftOpenAI:
+							 SwiftOpenAIChatView()
+						 case .macPawOpenAI:
+							 MacPawOpenAIChatView()
 					 }
 				 }
 			 }

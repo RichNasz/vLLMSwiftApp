@@ -1,5 +1,5 @@
 {
-  "originHash" : "df038bcc9f4c58946ce49e72295f54d7068f7de8d60780a55423d96d21e68a16",
+  "originHash" : "5246f66193a3e67b538f8d5baf523499c204a478777135638d54b1b9887eb911",
   "pins" : [
     {
       "identity" : "llama-stack-client-swift",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "ce6005c88bad1d39b502ae96e3d2a2624ae5ee6d",
         "version" : "0.2.2"
+      }
+    },
+    {
+      "identity" : "openai",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MacPaw/OpenAI.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "9261cd39d55a718bcc360fbc29515a331cad5dbb"
       }
     },
     {
@@ -89,6 +98,15 @@
       "state" : {
         "revision" : "6fac6f7c428d5feea2639b5f5c8b06ddfb79434b",
         "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "swiftopenai",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jamesrochabrun/SwiftOpenAI",
+      "state" : {
+        "revision" : "854539935150cf4efa69a32ae761ee2aa64aa84a",
+        "version" : "4.1.1"
       }
     },
     {

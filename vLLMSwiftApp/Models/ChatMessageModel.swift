@@ -8,15 +8,6 @@
 import Foundation
 import SwiftData
 
-/// Specify the scope of message roles that are valid
-///
-/// Defines the entire scope of possible roles assocaited with a a message.
-/// Must remain public since the ``ChatMessage`` is also public and @Observable
-enum ChatMessageRole: Codable {
-	case user
-	case system
-	case assistant
-}
 
 /// This class is used to store a basic chat messge.
 /// 
@@ -27,6 +18,14 @@ enum ChatMessageRole: Codable {
 	var content: String	// allows to used reactively in SwiftUI
 	var isUser: ChatMessageRole
 	var timestamp: Date // Added for sorting and persistence
+	
+	/// Defines the entire scope of possible roles assocaited with a a message.
+	/// Must remain public since the ``ChatMessage`` is also public and @Observable
+	enum ChatMessageRole: Codable {
+		case user
+		case system
+		case assistant
+	}
 	
 	/// class initializer
 	/// - Parameters:
@@ -42,10 +41,10 @@ enum ChatMessageRole: Codable {
 	}
 }
 
-/// This class is used to track converstions
+/// This class is used to track converstions, but is not currently implemented.
 ///
 /// Conversations are made up of multiple indvidual ChatMessages.
-/// This class **is not** currently used and is a placeholder for future functional capabilities.
+/// This class **is not** currently used, and is a placeholder for future functional capabilities.
 @Observable class ChatConversation {
 	var id: UUID
 	var name: String?

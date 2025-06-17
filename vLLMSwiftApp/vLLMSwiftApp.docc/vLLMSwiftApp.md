@@ -50,3 +50,14 @@ vLLM is an inference engine capable of providing multiple ways that applications
 - <doc:Understanding-the-Llama-Stack-chat>
 - ``LlamaStackChatView``
 - ``LlamaStackChatViewModel``
+
+### SwiftOpenAI Chat
+- <doc:Understanding-the-SwiftOpenAI-chat>
+- ``SwiftOpenAIChatView``
+- ``SwiftOpenAIChatViewModel``
+
+### MacPaw/OpenAI Chat
+- <doc:Understanding-the-MacPaw-OpenAI-chat>
+- ``MacPawOpenAIChatView``
+- ``MacPawOpenAIChatViewModel``
+

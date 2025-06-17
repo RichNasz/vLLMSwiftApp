@@ -14,7 +14,7 @@ import LlamaStackClient
 /// Model class for the LlamaStackChatView
 ///
 ///Uses @Observable macro instead of @ObservableObject and @Published as it is easier to proagate changes
-/// to the llmResponse for the UI to pick up on.
+/// to the ``llmResponse`` for SwiftUI to detect and re-render.
 ///
 @Observable class LlamaStackChatViewModel: ObservableObject {
 	
@@ -38,7 +38,7 @@ import LlamaStackClient
 	func setServer( server: Server) {
 		self.server = server
 		llmResponse = ""	// also reset the response since there is a new server
-		// TODO: consider adding code to save the exisitng converstion before resetting so user can return to it
+		// TODO: consider adding code to save the exisitng conversation before resetting so user can return to it
 	}
 	
 

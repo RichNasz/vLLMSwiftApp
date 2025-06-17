@@ -3,15 +3,13 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in closure #2 in MainAppView.body.getter:MainAppView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "serverList">
-            </PersistentString>
-            <PersistentString
-               value = "serverList.isEmpty">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "LlamaStackChatViewModel.sendLLMrequest(forPrompt:onServer:):LlamaStackChatViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SwiftOpenAIChatViewModelTests.testSendMessageInvalidURLSet():SwiftOpenAIChatViewModelTests.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MacPawOpenAIChatViewModel.sendLLMrequest(forPrompt:onServer:):MacPawOpenAIChatViewModel.swift">
       </ContextState>
       <ContextState
          contextName = "closure #3 in MainAppView.body.getter:MainAppView.swift">
@@ -25,11 +23,11 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "LlamaStackChatViewModel.sendLLMrequest(forPrompt:onServer:):LlamaStackChatViewModel.swift">
-      </ContextState>
-      <ContextState
          contextName = "closure #2 in closure #5 in closure #1 in ServerListView.body.getter:ServerListView.swift">
          <PersistentStrings>
+            <PersistentString
+               value = "!selectedServer==nil">
+            </PersistentString>
             <PersistentString
                value = "selectedServer!=nil">
             </PersistentString>
@@ -37,15 +35,29 @@
                value = "selectedServer==nil">
             </PersistentString>
             <PersistentString
-               value = "!selectedServer==nil">
-            </PersistentString>
-            <PersistentString
                value = "selectedServer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #2 in MainAppView.body.getter:MainAppView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "serverList">
+            </PersistentString>
+            <PersistentString
+               value = "serverList.isEmpty">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #1 in closure #1 in closure #1 in closure #1 in closure #1 in MainAppView.body.getter:MainAppView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MacPawOpenAIChatViewModel.sendMessage(_:):MacPawOpenAIChatViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #4 in closure #1 in closure #1 in MacPawOpenAIChatView.body.getter:MacPawOpenAIChatView.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
