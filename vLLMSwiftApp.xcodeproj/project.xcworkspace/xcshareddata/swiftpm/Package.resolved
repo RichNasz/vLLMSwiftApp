@@ -1,6 +1,15 @@
 {
-  "originHash" : "5246f66193a3e67b538f8d5baf523499c204a478777135638d54b1b9887eb911",
+  "originHash" : "78badf4d1896a44a99e8a4832ae8d99a1ed44c962a142aac09637f3bf862ed51",
   "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "513364f870f6bfc468f9d2ff0a95caccc10044c5",
+        "version" : "5.10.2"
+      }
+    },
     {
       "identity" : "llama-stack-client-swift",
       "kind" : "remoteSourceControl",

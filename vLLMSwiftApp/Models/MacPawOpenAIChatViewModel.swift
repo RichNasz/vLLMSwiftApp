@@ -105,7 +105,17 @@ import OpenAI
 		// Set the value used for the base path to empty if there server URL has no path component
 		let serverPath = urlComponents.path.isEmpty ? "/v1" : urlComponents.path
 		
-		let macPawOpenAIConfiguration = OpenAI.Configuration( token: onServer.apiKey, organizationIdentifier: nil, host: urlComponents.host!, port: urlComponents.port!, scheme: urlComponents.scheme ?? "https", basePath: serverPath, timeoutInterval: 60)
+		let defaultPort = (urlComponents.scheme ?? "https") == "https" ? 443 : 80
+		
+		let macPawOpenAIConfiguration = OpenAI.Configuration(
+			token: onServer.apiKey ?? "",
+			organizationIdentifier: nil,
+			host: urlComponents.host ?? "localhost",
+			port: urlComponents.port ?? defaultPort,
+			scheme: urlComponents.scheme ?? "https",
+			basePath: serverPath,
+			timeoutInterval: 60
+		)
 		
 		// create the service we need using the configuration from above
 		let openAI = OpenAI(configuration: macPawOpenAIConfiguration)

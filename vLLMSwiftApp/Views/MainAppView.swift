@@ -15,6 +15,9 @@ private enum DynamicNavigationDestination: Hashable {
 	case llamaStackChat
 	case swiftOpenAI
 	case macPawOpenAI
+	case alamoFire
+	case urlSession
+	
 }
 
 /// structure for an indidividual navigaiton item used in the view
@@ -30,6 +33,8 @@ private struct NavItem: Identifiable, Hashable {
 			case "Llama-Stack Chat": return .llamaStackChat
 			case "SwiftOpenAI Chat": return .swiftOpenAI
 			case "MacPaw -> OpenAI Chat": return .macPawOpenAI
+			case "Alamofire Chat": return .alamoFire
+			case "URLSession Chat": return .urlSession
 			default: return nil
 		}
 	}
@@ -71,7 +76,7 @@ struct MainAppView: View {
 		]),
 		NavSection(title: "OpenAI examples", items: [
 			NavItem(title: "URLSession Chat", icon: "message"),
-			NavItem(title: "AlamoFire Chat", icon: "message"),
+			NavItem(title: "Alamofire Chat", icon: "message"),
 			NavItem(title: "SwiftOpenAI Chat", icon: "message"),
 			NavItem(title: "MacPaw -> OpenAI Chat", icon: "message")
 		])
@@ -130,6 +135,12 @@ struct MainAppView: View {
 							 SwiftOpenAIChatView()
 						 case .macPawOpenAI:
 							 MacPawOpenAIChatView()
+						 case .alamoFire:
+							 AlamoFireChatView()
+						 case .urlSession:
+							 FoundationChatView()
+						 @unknown default:
+							 Text("Unknown Destination")
 					 }
 				 }
 			 }

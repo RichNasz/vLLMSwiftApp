@@ -4,52 +4,116 @@ Learn about the basic structure of the application
 
 ## Overview
 
-The goal of the application is to provide an example of how to implement a simple chatbot that will connect to a vLLM server and make a text inference request. The two connectivity options that are used for the call from the application to vLLM are Llama-Stack and OpenAPI.
-
->Note: Only the Llama-Stack remote inference API call is currently implemented. 
+The goal of the application is to provide comprehensive examples of how to implement chat interfaces that connect to vLLM servers using different HTTP client approaches. The application demonstrates both Llama-Stack API integration and multiple OpenAI-compatible API implementations, showcasing various Swift networking libraries and patterns.
 
 Application functionality can be broken down into three major categories:
-- **Server definition and maintenance:** allows the user to create, update, and delete the server definitions that are require to make inference requests.
-- **Specify what API to use per server:** use Llama-Stack or OpenAI APIs when sending a request (prompt) for model inference.
-- **Submit text inference requests and handle responses:** as well as see the history of interactions with the model.
+- **Server definition and maintenance:** allows the user to create, update, and delete the server definitions that are required to make inference requests.
+- **API selection and configuration:** support for both Llama-Stack and OpenAI-compatible APIs with flexible server endpoint configuration.
+- **Multiple chat implementations:** demonstrate different approaches to HTTP networking, streaming responses, and real-time UI updates.
 
 ### Application startup
 
-When the application starts it performs three basic tasks
-- Define the Swift Data schema, and attach the container to the ``MainAppView``.
-- Configure the TipKit framework using ``ApplicationTipConfiguration``.
+When the application starts it performs three basic tasks:
+- Define the Swift Data schema for ``Server`` persistence and attach the container to the ``MainAppView``.
+- Configure the TipKit framework using ``ApplicationTipConfiguration`` for user onboarding guidance.
 - Create the base application user interface via the view defined in ``MainAppView``.
-
 
 ### Application data
 
-Swift Data is used to persist data across application launches. The only persistent data implemented at this time is the list of servers that the application can connect to. The exact data that is stored for each server can be found in ``Server``.
+Swift Data is used to persist data across application launches. The only persistent data implemented is the list of servers that the application can connect to. The exact data that is stored for each server can be found in ``Server``, which includes:
+- Server name (unique identifier)
+- Base URL for the inference endpoint
+- API type (Llama-Stack or OpenAI-compatible)
+- Optional API key for authentication
+- Optional model name for inference requests
 
-> Warning: Persistent data maintained for Tips is automatically managed by TipKit. The code in ``vLLMSwiftApp/vLLMSwiftApp/init()`` contains the line try? Tips.resetDatastore() that resets the tips data store so that usage info isn't persisted across app usage. You must remove this line to test tip functionality as it will behave during recurring usage of the application.
+> Warning: Persistent data maintained for Tips is automatically managed by TipKit. The code in ``vLLMSwiftApp`` init() contains `try? Tips.resetDatastore()` that resets the tips data store so that usage info isn't persisted across app usage. You must remove this line to test tip functionality as it will behave during recurring usage of the application.
 
-### Initial application execution
+### Navigation architecture
 
-When the application starts up, the ``MainAppView`` appears and is responsible for defining the NavigationSplitView that is the base structure for the user interface. The left sidebar contains a menu with items enable based on application state, and code availability.
+When the application starts up, the ``MainAppView`` appears and establishes a NavigationSplitView as the base structure for the user interface. The left sidebar contains a dynamically generated menu organized into logical sections:
 
-Code availability simply means that the view and code associated with a menu item has been created. Since this project is being released before all code is completed, there will be menu items that can't be used. Determining what menu items are available in code is based on the contents of NavItem and NavItem/destination, that is either set to a nil value, or one of the enumerations in DynamicNavigationDestination. Nil values indicate no code is available for the NavItem. The code in ``MainAppView/body`` determines if there is a value, and if so creates a NavigationLink for it.
+**Settings Section:**
+- **vLLM Servers** - Server configuration and management via ``ServerListView``
+- **Chat Preferences** - Placeholder for future chat customization options
 
-When the ``MainAppView`` appears, the code will check to see if there are any servers defined. If there aren't any, then the menu item labeled "vLLM Severs" will be selected, and the ``ServerListView`` will appear in the detail column of the NavigationSplitView. In addition, the tip in ``CreateServerTip`` will be displayed underneath the plus symbol in the toolbar on the upper right of the window. 
+**Llama-Stack Example Section:**
+- **Llama-Stack Chat** - Official Llama-Stack SDK implementation via ``LlamaStackChatView``
 
-### Server list management
+**OpenAI Examples Section:**
+- **URLSession Chat** - Native Foundation networking via ``FoundationChatView``  
+- **Alamofire Chat** - Third-party HTTP library via ``AlamoFireChatView``
+- **SwiftOpenAI Chat** - Community OpenAI SDK via ``SwiftOpenAIChatView``
+- **MacPaw → OpenAI Chat** - Alternative OpenAI SDK via ``MacPawOpenAIChatView``
 
-The user must define one or more servers to connect to in the application before any other functionality can be used. The user can manage (create, update, delete) server via the "vLLM Servers" menu item that shows the ``ServerListView`` in the detail column of the NavigationSplitView.  
+The navigation system uses a dynamic approach where menu items are enabled based on the availability of implemented views. This is controlled through the `DynamicNavigationDestination` enum and `NavItem` destination mapping.
 
-The view is comprised of a list of known servers that are persisted in Swift Data. New servers can be added by clicking the plus symbol shown on the upper right of the application. Existing servers can be edited by clicking on them in the list, and deleted when selected in the list **and** the pressing the minus symbol on the upper right of the app window.
+### Server management workflow
 
-When a server is added or is being edited a SwiftUI Inspector sheet will appear on the right side of the application window. The content and functionality of the inspector are defined in ``ServerEditView``. 
+The user must define one or more servers before any chat functionality can be used. Server management is handled through the "vLLM Servers" menu item:
 
-### vLLM inference (chat) interactions
-There are multiple views that allow for interaction with a vLLM server. Interaction is performed using either LLama-Stack or OpenAI REST APIs. There are articles available for the following application menu items: 
+1. **Server List Display:** ``ServerListView`` shows all configured servers in a SwiftData-backed list
+2. **Server Creation:** Plus button opens ``ServerEditView`` in a SwiftUI Inspector sheet
+3. **Server Editing:** Clicking on existing servers opens ``ServerEditView`` for modification  
+4. **Server Deletion:** Selection plus minus button removes servers from persistent storage
 
-**Llama-Stack**
+When no servers are configured, the application automatically navigates to the server management view and displays the ``CreateServerTip`` to guide new users.
 
-- Llama-Stack Chat - review the <doc:Understanding-the-Llama-Stack-chat> article
+### Chat implementation approaches
 
-**OpenAI**
+The application demonstrates five distinct approaches to implementing chat interfaces with vLLM servers:
 
-- No implementations or associated articles at this time
+**Llama-Stack Implementation:**
+- Uses the official [llama-stack-client-swift SDK](https://github.com/meta-llama/llama-stack-client-swift)
+- Leverages auto-generated code from OpenAPI specifications  
+- Provides type-safe API interactions with contract-first development
+- Handles text, image, and tool call content types
+- Review the <doc:Understanding-the-Llama-Stack-chat> article for details
+
+**Foundation Implementation:**
+- Uses Apple's native URLSession for zero-dependency networking
+- Demonstrates comprehensive error handling across multiple layers
+- Shows modular architecture with separate request preparation and response processing
+- Review the <doc:Understanding-the-Foundation-chat> article for details
+
+**Alamofire Implementation:**
+- Uses the popular [Alamofire](https://github.com/Alamofire/Alamofire) HTTP networking library
+- Demonstrates advanced streaming capabilities with server-sent events
+- Shows sophisticated error handling and JSON processing
+- Review the <doc:Understanding-the-Alamofire-chat> article for details
+
+**SwiftOpenAI Implementation:**
+- Uses the [SwiftOpenAI](https://github.com/jamesrochabrun/SwiftOpenAI) community library
+- Demonstrates factory-based service creation patterns
+- Shows flexible configuration for custom endpoints
+- Review the <doc:Understanding-the-SwiftOpenAI-chat> article for details
+
+**MacPaw OpenAI Implementation:**
+- Uses the [MacPaw/OpenAI](https://github.com/MacPaw/OpenAI) community library
+- Demonstrates high-level SDK integration with streaming support
+- Shows comprehensive error categorization and finish reason handling
+- Review the <doc:Understanding-the-MacPaw-OpenAI-chat> article for details
+
+### Common components and patterns
+
+All chat implementations share several common architectural patterns:
+
+**MVVM Architecture:** Each chat view is paired with an observable ViewModel that handles API integration and data management.
+
+**Shared UI Components:** 
+- ``ChatInputView`` - Reusable text input component for prompt collection
+- ``ChatMessage`` - Observable model for real-time message updates
+- Chat bubble rendering with user/assistant visual distinction
+
+**Real-time Updates:** All implementations use the `@Observable` macro for immediate UI updates during streaming responses.
+
+**Error Handling:** Each implementation provides comprehensive error handling appropriate to its networking approach.
+
+### User guidance system
+
+The application integrates TipKit for contextual user guidance:
+- ``CreateServerTip`` - Guides users to create their first server configuration
+- ``ChooseMenuItemTip`` - Helps users navigate to chat functionality after server setup
+- ``ApplicationTipConfiguration`` - Centralizes tip configuration and display frequency
+
+Tips are displayed contextually based on application state, ensuring users understand the required setup steps for successful operation.

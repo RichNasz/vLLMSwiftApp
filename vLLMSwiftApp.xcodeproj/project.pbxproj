@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		421FFD212DB13C5700F3C10A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 421FFD202DB13C4C00F3C10A /* README.md */; };
 		421FFD242DB1A1DC00F3C10A /* LlamaStackClient in Frameworks */ = {isa = PBXBuildFile; productRef = 421FFD232DB1A1DC00F3C10A /* LlamaStackClient */; };
+		423D77242E02045500A0ECCB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 423D77232E02045500A0ECCB /* Alamofire */; };
 		429504742DDB723300B8856A /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 429504732DDB723300B8856A /* OpenAI */; };
 		42999EC72DD4D56C00B2CDB6 /* SwiftOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 42999EC62DD4D56C00B2CDB6 /* SwiftOpenAI */; };
 		42D1A70A2DBA97E00016403C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 42D1A7092DBA97E00016403C /* LICENSE */; };
@@ -76,6 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42999EC72DD4D56C00B2CDB6 /* SwiftOpenAI in Frameworks */,
+				423D77242E02045500A0ECCB /* Alamofire in Frameworks */,
 				429504742DDB723300B8856A /* OpenAI in Frameworks */,
 				421FFD242DB1A1DC00F3C10A /* LlamaStackClient in Frameworks */,
 			);
@@ -143,6 +145,7 @@
 				421FFD232DB1A1DC00F3C10A /* LlamaStackClient */,
 				42999EC62DD4D56C00B2CDB6 /* SwiftOpenAI */,
 				429504732DDB723300B8856A /* OpenAI */,
+				423D77232E02045500A0ECCB /* Alamofire */,
 			);
 			productName = vLLMSwiftApp;
 			productReference = 421FFCA32DAEB65A00F3C10A /* vLLMSwiftApp.app */;
@@ -202,7 +205,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
-				LastUpgradeCheck = 1630;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					421FFCA22DAEB65A00F3C10A = {
 						CreatedOnToolsVersion = 16.3;
@@ -230,6 +233,7 @@
 				421FFD222DB1A1DC00F3C10A /* XCRemoteSwiftPackageReference "llama-stack-client-swift" */,
 				42999EC52DD4D56C00B2CDB6 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
 				429504722DDB723300B8856A /* XCRemoteSwiftPackageReference "OpenAI" */,
+				423D77222E02045500A0ECCB /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 421FFCA42DAEB65A00F3C10A /* Products */;
@@ -341,6 +345,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = YWJU9P6KL8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -403,6 +408,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YWJU9P6KL8;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -431,6 +437,7 @@
 				CODE_SIGN_ENTITLEMENTS = vLLMSwiftApp/vLLMSwiftApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YWJU9P6KL8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -474,6 +481,7 @@
 				CODE_SIGN_ENTITLEMENTS = vLLMSwiftApp/vLLMSwiftApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YWJU9P6KL8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -515,6 +523,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YWJU9P6KL8;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
@@ -538,6 +547,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YWJU9P6KL8;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
@@ -560,6 +570,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YWJU9P6KL8;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
@@ -582,6 +593,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YWJU9P6KL8;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
@@ -649,6 +661,14 @@
 				minimumVersion = 0.2.2;
 			};
 		};
+		423D77222E02045500A0ECCB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
 		429504722DDB723300B8856A /* XCRemoteSwiftPackageReference "OpenAI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
@@ -672,6 +692,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 421FFD222DB1A1DC00F3C10A /* XCRemoteSwiftPackageReference "llama-stack-client-swift" */;
 			productName = LlamaStackClient;
+		};
+		423D77232E02045500A0ECCB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 423D77222E02045500A0ECCB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		429504732DDB723300B8856A /* OpenAI */ = {
 			isa = XCSwiftPackageProductDependency;
