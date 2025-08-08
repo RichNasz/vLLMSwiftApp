@@ -177,10 +177,20 @@ The project includes comprehensive DocC documentation covering:
 - Include unit tests for new functionality
 - Maintain consistency with existing code style
 	
-## Acknowledgements
+## Acknowledgments
 
-Several open source projects are used in associated with this project:
-- [Llama-Stack] https://github.com/meta-llama/llama-stack
-- [Alamofire] https://github.com/Alamofire/Alamofire
-- [SwiftOpenAI] https://github.com/jamesrochabrun/SwiftOpenAI
-- [MacPaw/OpenAI] https://github.com/MacPaw/OpenAI
+This project builds upon excellent open source libraries and frameworks:
+
+- **[Llama-Stack](https://github.com/meta-llama/llama-stack)** - Meta's comprehensive inference stack
+- **[Alamofire](https://github.com/Alamofire/Alamofire)** - Elegant HTTP networking in Swift
+- **[SwiftOpenAI](https://github.com/jamesrochabrun/SwiftOpenAI)** - Swift package for OpenAI API
+- **[MacPaw/OpenAI](https://github.com/MacPaw/OpenAI)** - Swift client for OpenAI and Azure OpenAI
+- **[vLLM](https://docs.vllm.ai/)** - High-throughput LLM inference engine
+
+## License
+
+This project is available under the MIT License. See the LICENSE file for more information.
+
+---
+
+**Note**: This is sample code for educational and demonstration purposes. Ensure proper security practices when deploying to production environments.
