@@ -52,7 +52,6 @@ The Llama-Stack project employs a contract-first development approach where the 
 
 Testing of the Llama-Stack functionality is planned for future implementation. When available, test coverage will be located in the vLLMSwiftAppTests folder of the project.
 
-> Important: When testing is implemented, server connectivity tests will initially be performed using actual URLs instead of server stubs. Until stubs are created in the test code, you will need to modify the test URLs to match your environment before the tests can pass.
 
 
 

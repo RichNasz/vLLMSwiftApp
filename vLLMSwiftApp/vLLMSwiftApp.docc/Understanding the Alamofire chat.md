@@ -37,6 +37,6 @@ The implementation includes several important structures:
 
 ### Testing
 
-Testing of the Alamofire functionality is planned for future implementation. When available, test coverage will be located in the vLLMSwiftAppTests folder of the project.
+Swift Testing code for Alamofire functionality is located in the vLLMSwiftAppTests folder of the project. Currently test coverage includes:
+- ``AlamoFireChatViewModel``
 
-> Important: When testing is implemented, server connectivity tests will initially be performed using actual URLs instead of server stubs. Until stubs are created in the test code, you will need to modify the test URLs to match your environment before the tests can pass.

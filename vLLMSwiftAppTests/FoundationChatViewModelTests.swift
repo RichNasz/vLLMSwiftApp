@@ -1,23 +1,22 @@
 //
-//  MacPawOpenAIChatViewModelTests.swift
+//  FoundationChatViewModelTests.swift
 //  vLLMSwiftAppTests
 //
-//  Created by Richard Naszcyniec on 5/20/25.
-//  Latest updates assisted by AI on 8/7/2.
+//  Created by Richard Naszcyniec with AI assitance on 8/7/25.
 //
 
 import Testing
-import OpenAI
+import Foundation
 @testable import vLLMSwiftApp
 
-/// Series of tests for MacPawOpenAIChatViewModel
-@Suite("MacPawOpenAIChatViewModel Tests")
-struct MacPawOpenAIChatViewModelTests {
+/// Series of tests for FoundationChatViewModel
+@Suite("FoundationChatViewModel Tests")
+struct FoundationChatViewModelTests {
 	
 	// Test data constants
 	private let invalidModelName = "InvalidModelName"
 	private let validOpenAIModelName = "llama3.2:latest"
-	private let validLlamaStackModelName = "meta-llama/Llama-3.1-8B-Instruct"
+	private let validLLamaStackModelName = "meta-llama/Llama-3.1-8B-Instruct"
 	
 	private let invalidURLString = "invalid url"
 	private let validLlamaStackServerURLString = "http://127.0.0.1:5001"
@@ -35,7 +34,7 @@ struct MacPawOpenAIChatViewModelTests {
 	@Test("Valid initialization")
 	func testInitialization() {
 		#expect(throws: Never.self) {
-			let viewModel = MacPawOpenAIChatViewModel()
+			let viewModel = FoundationChatViewModel()
 			#expect(viewModel.llmResponse == "", "llmResponse should be empty after initialization")
 		}
 	}
@@ -44,7 +43,7 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("Can setServer without error")
 	func testSetServerSucceeds() {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "test-server", url: validOpenAIServerURLString, apiType: .openAI, modelName: validOpenAIModelName)
 		
 		#expect(throws: Never.self) {
@@ -55,7 +54,7 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("setServer resets llmResponse")
 	func testSetServerResetsResponse() {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		viewModel.llmResponse = "Previous response"
 		
 		let server = Server(name: "test-server", url: validOpenAIServerURLString, apiType: .openAI, modelName: validOpenAIModelName)
@@ -68,16 +67,16 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("sendMessage with no server set")
 	func testSendMessageNoServer() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		
 		await viewModel.sendMessage(testPrompt)
 		
-		#expect(viewModel.llmResponse == "Error: Server not set. Message could not be sent", "Should show server not set error")
+		#expect(viewModel.llmResponse.contains("Error: Server not set"), "Should show server not set error")
 	}
 	
 	@Test("sendMessage with invalid URL")
 	func testSendMessageInvalidURL() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "invalid-server", url: invalidURLString, apiType: .openAI, modelName: validOpenAIModelName)
 		viewModel.setServer(server: server)
 		
@@ -88,7 +87,7 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("sendMessage with missing model name")
 	func testSendMessageNoModelName() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "no-model-server", url: validOpenAIServerURLString, apiType: .openAI)
 		viewModel.setServer(server: server)
 		
@@ -99,7 +98,7 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("sendMessage with empty prompt")
 	func testSendMessageEmptyPrompt() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "test-server", url: validOpenAIServerURLString, apiType: .openAI, modelName: validOpenAIModelName)
 		viewModel.setServer(server: server)
 		
@@ -109,21 +108,11 @@ struct MacPawOpenAIChatViewModelTests {
 		#expect(viewModel.llmResponse.count >= 0, "Should handle empty prompt gracefully")
 	}
 	
-	@Test("sendMessage with invalid model name")
-	func testSendMessageInvalidModelName() async {
-		let viewModel = MacPawOpenAIChatViewModel()
-		let server = Server(name: "test-server", url: validOpenAIServerURLString, apiType: .openAI, modelName: invalidModelName)
-		viewModel.setServer(server: server)
-		
-		await viewModel.sendMessage(testPrompt)
-		#expect(viewModel.llmResponse.contains("Error:"), "Should show error for invalid model name")
-	}
-	
 	// MARK: - URL Validation Tests
 	
 	@Test("Server URL without path gets default path")
 	func testURLPathCorrection() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "no-path-server", url: "http://localhost:11434", apiType: .openAI, modelName: validOpenAIModelName)
 		viewModel.setServer(server: server)
 		
@@ -135,7 +124,7 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("Server URL with existing path is preserved")
 	func testURLPathPreservation() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "with-path-server", url: validOpenAIServerWithPathURLString, apiType: .openAI, modelName: validOpenAIModelName)
 		viewModel.setServer(server: server)
 		
@@ -149,7 +138,7 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("Error handling for malformed URL components")
 	func testMalformedURLComponents() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "malformed-server", url: "ht!tp://invalid-url", apiType: .openAI, modelName: validOpenAIModelName)
 		viewModel.setServer(server: server)
 		
@@ -160,7 +149,7 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("Error handling for missing URL scheme")
 	func testMissingURLScheme() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "no-scheme-server", url: "localhost:11434", apiType: .openAI, modelName: validOpenAIModelName)
 		viewModel.setServer(server: server)
 		
@@ -171,7 +160,7 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("Error handling for missing URL host")
 	func testMissingURLHost() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "no-host-server", url: "http://", apiType: .openAI, modelName: validOpenAIModelName)
 		viewModel.setServer(server: server)
 		
@@ -180,35 +169,54 @@ struct MacPawOpenAIChatViewModelTests {
 		#expect(viewModel.llmResponse.contains("Error:"), "Should handle missing URL host")
 	}
 	
-	// MARK: - API Key Tests
+	// MARK: - Data Structure Tests
 	
-	@Test("Valid API key configuration")
-	func testSendMessageValidApiKey() async {
-		let viewModel = MacPawOpenAIChatViewModel()
-		let server = Server(name: "test-server", url: validOpenAIServerURLString, apiType: .openAI, apiKey: validAPIKey, modelName: validOpenAIModelName)
-		viewModel.setServer(server: server)
+	@Test("OpenAIRequest structure encoding")
+	func testOpenAIRequestEncoding() {
+		let message = FoundationChatViewModel.OpenAIMessage(role: "user", content: testPrompt)
+		let request = FoundationChatViewModel.OpenAIRequest(
+			model: validOpenAIModelName,
+			messages: [message]
+		)
 		
-		await viewModel.sendMessage(testPrompt)
-		// Connection may fail due to no actual server, but API key should be processed
-		#expect(viewModel.llmResponse.count >= 0, "Should handle valid API key configuration")
+		#expect(throws: Never.self) {
+			let encoder = JSONEncoder()
+			let data = try encoder.encode(request)
+			#expect(data.count > 0, "Should successfully encode OpenAIRequest")
+			
+			// Verify JSON structure
+			let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+			#expect(json?["model"] as? String == validOpenAIModelName, "Model should be encoded correctly")
+			#expect(json?["stream"] as? Bool == true, "Stream should default to true")
+			
+			let messages = json?["messages"] as? [[String: Any]]
+			#expect(messages?.count == 1, "Should have one message")
+			#expect(messages?.first?["role"] as? String == "user", "Role should be user")
+			#expect(messages?.first?["content"] as? String == testPrompt, "Content should match")
+		}
 	}
 	
-	@Test("Empty API key handling")
-	func testSendMessageEmptyApiKey() async {
-		let viewModel = MacPawOpenAIChatViewModel()
-		let server = Server(name: "test-server", url: validOpenAIServerURLString, apiType: .openAI, apiKey: "", modelName: validOpenAIModelName)
-		viewModel.setServer(server: server)
+	@Test("OpenAIMessage structure encoding")
+	func testOpenAIMessageEncoding() {
+		let message = FoundationChatViewModel.OpenAIMessage(role: "system", content: "You are a helpful assistant")
 		
-		await viewModel.sendMessage(testPrompt)
-		// May result in auth error from server
-		#expect(viewModel.llmResponse.count >= 0, "Should handle empty API key")
+		#expect(throws: Never.self) {
+			let encoder = JSONEncoder()
+			let data = try encoder.encode(message)
+			#expect(data.count > 0, "Should successfully encode OpenAIMessage")
+			
+			// Verify JSON structure
+			let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+			#expect(json?["role"] as? String == "system", "Role should be encoded correctly")
+			#expect(json?["content"] as? String == "You are a helpful assistant", "Content should be encoded correctly")
+		}
 	}
 	
 	// MARK: - Threading and Concurrency Tests
 	
 	@Test("Concurrent sendMessage calls")
 	func testConcurrentSendMessage() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "concurrent-server", url: validOpenAIServerURLString, apiType: .openAI, modelName: validOpenAIModelName)
 		viewModel.setServer(server: server)
 		
@@ -229,7 +237,7 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("Complete workflow with valid server configuration")
 	func testCompleteWorkflow() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		
 		// Step 1: Initialize (should start empty)
 		#expect(viewModel.llmResponse == "", "Should start with empty response")
@@ -264,7 +272,7 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("Very long prompt handling")
 	func testLongPrompt() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "long-prompt-server", url: validOpenAIServerURLString, apiType: .openAI, modelName: validOpenAIModelName)
 		viewModel.setServer(server: server)
 		
@@ -276,7 +284,7 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("Special characters in prompt")
 	func testSpecialCharactersPrompt() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "special-chars-server", url: validOpenAIServerURLString, apiType: .openAI, modelName: validOpenAIModelName)
 		viewModel.setServer(server: server)
 		
@@ -288,7 +296,7 @@ struct MacPawOpenAIChatViewModelTests {
 	
 	@Test("Unicode characters in prompt")
 	func testUnicodePrompt() async {
-		let viewModel = MacPawOpenAIChatViewModel()
+		let viewModel = FoundationChatViewModel()
 		let server = Server(name: "unicode-server", url: validOpenAIServerURLString, apiType: .openAI, modelName: validOpenAIModelName)
 		viewModel.setServer(server: server)
 		
@@ -297,75 +305,11 @@ struct MacPawOpenAIChatViewModelTests {
 		
 		#expect(viewModel.llmResponse.count >= 0, "Should handle Unicode characters in prompts")
 	}
-	
-	// MARK: - MacPaw OpenAI Specific Tests
-	
-	@Test("MacPaw OpenAI configuration with custom port")
-	func testCustomPortConfiguration() async {
-		let viewModel = MacPawOpenAIChatViewModel()
-		let server = Server(name: "custom-port-server", url: "http://localhost:8080", apiType: .openAI, modelName: validOpenAIModelName)
-		viewModel.setServer(server: server)
-		
-		await viewModel.sendMessage(testPrompt)
-		
-		#expect(viewModel.llmResponse.count >= 0, "Should handle custom port configuration")
-	}
-	
-	@Test("MacPaw OpenAI configuration with HTTPS scheme")
-	func testHTTPSSchemeConfiguration() async {
-		let viewModel = MacPawOpenAIChatViewModel()
-		let server = Server(name: "https-server", url: "https://api.openai.com", apiType: .openAI, modelName: validOpenAIModelName)
-		viewModel.setServer(server: server)
-		
-		await viewModel.sendMessage(testPrompt)
-		
-		#expect(viewModel.llmResponse.count >= 0, "Should handle HTTPS scheme")
-	}
-	
-	@Test("MacPaw OpenAI streaming response handling")
-	func testStreamingResponseHandling() async {
-		let viewModel = MacPawOpenAIChatViewModel()
-		let server = Server(name: "streaming-server", url: validOpenAIServerURLString, apiType: .openAI, modelName: validOpenAIModelName)
-		viewModel.setServer(server: server)
-		
-		// Reset response before sending
-		#expect(viewModel.llmResponse == "", "Response should be empty before sending")
-		
-		await viewModel.sendMessage("Tell me a short story")
-		
-		// Should handle streaming appropriately (will likely error due to no server)
-		#expect(viewModel.llmResponse.count >= 0, "Should handle streaming response")
-	}
-	
-	// MARK: - Error Response Tests
-	
-	@Test("API error response formatting")
-	func testAPIErrorResponseFormat() async {
-		let viewModel = MacPawOpenAIChatViewModel()
-		let server = Server(name: "error-server", url: "http://nonexistent.server:9999", apiType: .openAI, modelName: validOpenAIModelName)
-		viewModel.setServer(server: server)
-		
-		await viewModel.sendMessage(testPrompt)
-		
-		// Should produce a properly formatted error message
-		#expect(viewModel.llmResponse.contains("Error:") || viewModel.llmResponse.contains("API Error:"), "Should format error messages properly")
-	}
-	
-	@Test("Network connectivity error handling")
-	func testNetworkConnectivityError() async {
-		let viewModel = MacPawOpenAIChatViewModel()
-		let server = Server(name: "network-error-server", url: "http://192.0.2.1:80", apiType: .openAI, modelName: validOpenAIModelName) // RFC5737 test IP
-		viewModel.setServer(server: server)
-		
-		await viewModel.sendMessage(testPrompt)
-		
-		#expect(viewModel.llmResponse.contains("Error:"), "Should handle network connectivity errors")
-	}
 }
 
 // MARK: - Test Extensions for Mock Data
 
-extension MacPawOpenAIChatViewModelTests {
+extension FoundationChatViewModelTests {
 	
 	/// Creates a mock server for testing with common valid configuration
 	private func createMockValidServer() -> Server {

@@ -60,4 +60,3 @@ The implementation showcases the MacPaw SDK's flexibility for non-OpenAI endpoin
 Swift Testing code for MacPaw OpenAI functionality is located in the vLLMSwiftAppTests folder of the project. Currently test coverage includes:
 - ``MacPawOpenAIChatViewModel``
 
-> Important: Testing of server connectivity is performed using actual URLs instead of server stubs. Until stubs are created in the test code, you will need to modify the test URLs to match your environment before the tests can pass.

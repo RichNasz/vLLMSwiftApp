@@ -62,4 +62,3 @@ The SwiftOpenAI implementation provides robust error handling across multiple la
 Swift Testing code for the SwiftOpenAI functionality is located in the vLLMSwiftAppTests folder of the project. Currently test coverage includes:
 - ``SwiftOpenAIChatViewModel``
 
-> Important: Testing of server connectivity is performed using actual URLs instead of server stubs. Until stubs are created in the test code, you will need to modify the test URLs to match your environment before the tests can pass.

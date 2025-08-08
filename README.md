@@ -1,50 +1,181 @@
 # vLLMSwiftApp
-Sample code to demonstrate implementing a simple chatbot that can connect to vLLM servers using different HTTP REST APIs
 
-vLLM can accept reference requests using the following REST API options:
-- OpenAPI-compatible API
-- Llama-stack APIEndpointType
+A macOS SwiftUI application demonstrating how to build chatbot interfaces that connect to vLLM inference servers, and Llama Stack, using multiple HTTP client approaches. This sample project showcases best practices for integrating various Swift HTTP libraries that support both OpenAI-compatible and Llama-Stack APIs.
 
-## Build Instructions
+## Table of Contents
+- [Features](#features)
+- [Architecture](#architecture)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Implementations](#api-implementations)
+- [Documentation](#documentation)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [Acknowledgments](#acknowledgments)
 
-Follow these steps to build and run the Xcode project in this repository.
+## Features
 
-### Prerequisites
-- **Xcode**: Version 16.3 or later (download from the [Mac App Store](https://apps.apple.com/us/app/xcode/id497799835) or [Apple web site](https://developer.apple.com/xcode/).
-- **macOS**: macOS 15.0 (Sequoia) or later.
-- An Apple Developer account (optional, for running on physical devices).
-- **Access to a Llama-stack server**: required to exercise the Llama-Stack reote inference API. [Llama-Stack documentation](https://llama-stack.readthedocs.io/en/latest/getting_started/detailed_tutorial.html#step-1-installation-and-setup) can guide you on how to set up a server. You may also want to read about--or share--how to [set up vLLM as an inference provider for Llama-Stack](https://blog.vllm.ai/2025/01/27/intro-to-llama-stack-with-vllm.html).
+- 🚀 **Multiple HTTP Client Implementations**: Compare 5 different approaches to API integration
+- 🔄 **Real-time Streaming**: Live chat responses with @Observable pattern
+- 💾 **Persistent Server Configuration**: SwiftData-based server management
+- 🎯 **Modern SwiftUI**: Native macOS interface with NavigationSplitView
+- 📚 **Complete Documentation**: DocC documentation with examples
+- 🧪 **Comprehensive Testing**: Unit and UI tests for all components
+- 💡 **TipKit Integration**: User guidance and onboarding
 
-### Clone the repository
+## Architecture
 
-1. **Clone using command line**:
+### API Support
+vLLM accepts inference requests using these REST API endpoints:
+- **OpenAI-compatible API**: Standard Chat Completions format
 
-You can clone the repository directly into a directory of your choice using the terminal application and typing in the following:
-   ```bash
-   git clone https://github.com/RichNasz/vLLMSwiftApp.git
-   cd vLLMSwiftApp
-   ```
-   
-Navigate to the cloned folder in the Finder, locate the .xcodeproj or .xcworkspace file, and double-click it to open in Xcode.
-Alternatively, in Xcode, go to **File > Open**, browse to the cloned folder, and select the project file.
-   
-2. **Clone using Xcode**
+Llama Stack accepts inference requests using these REST API endpoints:
+- **OpenAI-compatible API**: Standard Chat Completions format
+- **Llama-Stack API**: Native Llama-Stack protocol
 
-You can clone the repository directly within Xcode
-- In Xcode, navigate to **Integrate > Clone...**
-- In the search field type: https://github.com/RichNasz/vLLMSwiftApp.git
-- In the dialog box that appears, select the main branch, and then press the **Clone** button.
-- In the file picker dialog that appears, select the directory to clone the project into, and then press the **Clone** button.
-- The repository will be cloned, and the project will be opened and ready for use.
-	
-### Xcode housekeeping
+### HTTP Client Implementations
+1. **LlamaStackChatViewModel** - Official Llama-Stack Swift client
+2. **SwiftOpenAIChatViewModel** - SwiftOpenAI library
+3. **MacPawOpenAIChatViewModel** - MacPaw/OpenAI library  
+4. **AlamoFireChatViewModel** - Alamofire HTTP client
+5. **FoundationChatViewModel** - Native URLSession
 
-There are several actions you need to take to have a smooth experience working with the project in Xcode:
-- During your first build a dialog box asking you to Enable & Trust the OpenAPIGenerator extension will pop up. Select the option to “Trust & Enable” when prompted. If you don’t do this, code for the SDK can’t be generated, and the code won’t work
-- You need to have your Apple developer account set up in Xcode so that projects you work on can be signed. You can create a free Apple Developer account for this, or use an existing account. Make sure your developer account is set using the **Settings… -> Accounts** menu option.
-- Clean the build folder using the **Product -> Clean Build Folder…** menu option.
-- Start a new build using the **Product ->Build** menu option. Once completed you will be able to run the application.
-- Generate the documentation for the project by selecting the **Product -> Build Documentation** menu item. Once completed you can access the documentation using the **Help -> Developer Documentation** menu item.
+## Requirements
+
+### System Requirements
+- **Xcode**: Version 16.3 or later ([Mac App Store](https://apps.apple.com/us/app/xcode/id497799835) or [Apple Developer](https://developer.apple.com/xcode/))
+- **macOS**: 15.0 (Sequoia) or later
+- **Apple Developer Account**: Optional for device deployment
+
+### Server Requirements
+- **Llama-Stack Server**: For native Llama-Stack API testing.
+  - Setup guide: [Llama-Stack Documentation](https://llama-stack.readthedocs.io/en/latest/getting_started/detailed_tutorial.html#step-1-installation-and-setup)
+  - vLLM integration: [vLLM with Llama-Stack](https://blog.vllm.ai/2025/01/27/intro-to-llama-stack-with-vllm.html)
+  
+- **OpenAI-Compatible Server**: For Chat Completions API testing
+  - **vLLM**: Open source inference server ([Documentation](https://docs.vllm.ai/en/latest/))
+  - **Llama Stack**: Offers OpenAI-compatible Chat Completions endpoint. [Llama-Stack Documentation](https://llama-stack.readthedocs.io/en/latest/getting_started/detailed_tutorial.html#step-1-installation-and-setup)
+  - **Local Options**: [LM Studio](https://lmstudio.ai/), [AnythingLLM](https://anythingllm.com/), [Ollama](https://ollama.com/download/mac)
+  - **Cloud Options**: Use an OpenAI-compatible Chat Completions endpoint of your choice.
+
+## Installation
+
+### Clone the Repository
+
+#### Option 1: Command Line
+```bash
+git clone https://github.com/RichNasz/vLLMSwiftApp.git
+cd vLLMSwiftApp
+```
+
+Open the project in Xcode:
+- Navigate to the cloned folder in Finder and double-click `vLLMSwiftApp.xcodeproj`
+- Or in Xcode: **File → Open** and select the project file
+
+#### Option 2: Xcode Integration
+1. In Xcode: **Integrate → Clone...**
+2. Enter repository URL: `https://github.com/RichNasz/vLLMSwiftApp.git`
+3. Select the `main` branch and click **Clone**
+4. Choose destination directory and click **Clone**
+
+### Setup and Build
+
+#### Initial Setup
+1. **Enable OpenAPIGenerator Extension**
+   - When prompted during first build, select "Trust & Enable"
+   - Required for SDK code generation
+
+2. **Configure Developer Account**
+   - **Xcode → Settings → Accounts**
+   - Add your Apple Developer account (free account sufficient)
+
+#### Build Process
+1. **Clean Build Folder**: **Product → Clean Build Folder** (⌘+Shift+K)
+2. **Build Project**: **Product → Build** (⌘+B)
+3. **Run Application**: **Product → Run** (⌘+R)
+
+## Usage
+
+### Server Configuration
+1. Launch the application
+2. Navigate to **Server List** in the sidebar
+3. Click **+** to add a new server
+4. Configure server details:
+   - **Name**: Unique identifier
+   - **Base URL**: Your vLLM server endpoint
+   - **API Type**: OpenAI or Llama-Stack
+   - **API Key**: Optional authentication
+   - **Model**: Model identifier
+
+### Chat Interface
+1. Select a chat implementation from the sidebar
+2. Choose your configured server
+3. Start chatting with real-time streaming responses
+
+## API Implementations
+
+### 1. Llama-Stack Client
+- **File**: `LlamaStackChatViewModel.swift`
+- **Library**: Official Llama-Stack Swift client
+- **Best For**: Native Llama-Stack protocol integration
+
+### 2. SwiftOpenAI
+- **File**: `SwiftOpenAIChatViewModel.swift`  
+- **Library**: SwiftOpenAI (4.1.1)
+- **Best For**: Comprehensive OpenAI API support
+
+### 3. MacPaw OpenAI
+- **File**: `MacPawOpenAIChatViewModel.swift`
+- **Library**: MacPaw/OpenAI (main branch)
+- **Best For**: Lightweight OpenAI integration
+
+### 4. Alamofire
+- **File**: `AlamoFireChatViewModel.swift`
+- **Library**: Alamofire (5.10.2)
+- **Best For**: Custom HTTP client implementations
+
+### 5. Foundation URLSession
+- **File**: `FoundationChatViewModel.swift`
+- **Library**: Native URLSession
+- **Best For**: No external dependencies
+
+## Documentation
+
+### Build Documentation
+**Product → Build Documentation** in Xcode
+
+### View Documentation  
+**Help → Developer Documentation** in Xcode
+
+The project includes comprehensive DocC documentation covering:
+- Architecture overview
+- API integration patterns
+- Code examples and best practices
+
+## Testing
+
+### Run Tests
+**Product → Test** (⌘+U) in Xcode
+
+### Test Structure
+- **Unit Tests**: ViewModel functionality and API integration
+- **UI Tests**: Navigation and interface interactions
+- **Test Files**: Located in `vLLMSwiftAppTests/`
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+### Development Guidelines
+- Follow existing SwiftUI and MVVM patterns
+- Add DocC documentation for new public APIs
+- Include unit tests for new functionality
+- Maintain consistency with existing code style
 	
 ## Acknowledgements
 

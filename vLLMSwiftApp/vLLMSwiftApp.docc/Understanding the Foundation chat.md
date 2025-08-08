@@ -50,6 +50,6 @@ The Foundation implementation provides robust error handling across multiple lay
 
 ### Testing
 
-Testing of the Foundation functionality is planned for future implementation. When available, test coverage will be located in the vLLMSwiftAppTests folder of the project.
+Swift Testing code for Foundation functionality is located in the vLLMSwiftAppTests folder of the project. Currently test coverage includes:
+- ``FoundationChatViewModel``
 
-> Important: When testing is implemented, server connectivity tests will initially be performed using actual URLs instead of server stubs. Until stubs are created in the test code, you will need to modify the test URLs to match your environment before the tests can pass.
